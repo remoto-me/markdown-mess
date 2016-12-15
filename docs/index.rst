@@ -13,4 +13,5 @@ Contents:
    :glob:
 
    Monster_UI/*
+   KAZOO doc/*
 
