@@ -246,7 +246,8 @@ List attempts for a specific attempt
 Re-enable auto-disabled hooks in bulk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Webhooks will auto-disable failing hooks (if Kazoo can't reach your server, or you take too long to respond with ``200 OK``, for instance). Especially if you're a reseller with webhooks in your client accounts, it can be tedious to have to iterate through all your accounts and re-enable each hook. Fortunately, you can perform this bulk-enable action against an account or an account and its descendants.
+Webhooks will auto-disable failing hooks (if Kazoo can't reach your server, or you take too long to respond with ``200 OK``, for instance). Especially if you're a reseller with webhooks in your client accounts, it can be tedious to have to iterate through all your accounts and re-enable each hook.
+Fortunately, you can perform this bulk-enable action against an account or an account and its descendants.
 
 Enable an account's hooks
 

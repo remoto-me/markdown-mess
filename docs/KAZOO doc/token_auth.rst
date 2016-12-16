@@ -13,7 +13,8 @@ Authentication tokens refresh their pvt\_modified timestamp each time they are u
 Token Restrictions
 ^^^^^^^^^^^^^^^^^^
 
-The authentication token can be created with restrictions on what resource URIs (and HTTP methods) can be accessed by the requestor. This payload is added to the authentication payload used in any of the authentication methods provided (`User <./user_authentication.md>`__, `API <./api_authentication.md>`__, etc).
+The authentication token can be created with restrictions on what resource URIs (and HTTP methods) can be accessed by the requestor. This payload is added to the authentication payload used in any of the authentication methods provided (`User <./user_authentication.md>`__,
+`API <./api_authentication.md>`__, etc).
 
 For example, when creating an authentication token via `API key <./api_authentication.md>`__, include the following object to restrict the resultant authentication token to read-only:
 
@@ -56,7 +57,8 @@ AMQP binding tokens are used (``#`` and ``*``) to denote wildcards. An example w
         }
     }
 
-This would restrict the authentication token to only be able to access {ACCOUNT\_ID}'s users resource and perform all of the CRUD actions (as well as quickcall and channel listings for a user). We can simply this restrictions object by using ``*`` for the method and ``#`` to match any URI with ``/users``:
+This would restrict the authentication token to only be able to access {ACCOUNT\_ID}'s users resource and perform all of the CRUD actions (as well as quickcall and channel listings for a user). We can simply this restrictions object by using ``*`` for the method and ``#`` to match any URI with
+``/users``:
 
 .. code:: json
 

@@ -80,7 +80,10 @@ What DTMF triggers a metaflow collection? Typically this would be '\*' or '#', b
 
     "binding_digit":"*"
 
-There is also a global flag in ``system_config/konami`` key ``use_fast_rearm`` which allows immediate retries of failed entries; defaults to 'false'. When 'true', the binding digit will typically reset the previous input allowing the user to start over at any time if they made a mistake. This also means you can't have the binding digit in the number sequence that follows, because the binding digit will discard the prior digits. For example if your binding digit is '*' and you have "123*\ 456" number configured when you dial "*123*\ 456" it will activate metaflow "456", not "123*456". An exception to this rule when you need a double binding digit, so binding digit '*' and number "*" is a valid shortcut. Another valid example is binding digit '*' and number "\*123", so when you dial "\*\*123" the first '*' is the binding digit that arms metaflows, but the second '*' is part of the number and will be treated as "\*123", not as just "123".
+There is also a global flag in ``system_config/konami`` key ``use_fast_rearm`` which allows immediate retries of failed entries; defaults to 'false'. When 'true', the binding digit will typically reset the previous input allowing the user to start over at any time if they made a mistake. This also
+means you can't have the binding digit in the number sequence that follows, because the binding digit will discard the prior digits. For example if your binding digit is '*' and you have "123*\ 456" number configured when you dial "*123*\ 456" it will activate metaflow "456", not "123*456". An
+exception to this rule when you need a double binding digit, so binding digit '*' and number "*" is a valid shortcut. Another valid example is binding digit '*' and number "\*123", so when you dial "\*\*123" the first '*' is the binding digit that arms metaflows, but the second '*' is part of the
+number and will be treated as "\*123", not as just "123".
 
 Digit Timeout
              
@@ -94,7 +97,8 @@ How long to wait, in milliseconds, for the next DTMF. Once this timeout expires,
 Listen On
          
 
-Most of the time, a metaflow will only be concerned with receiving the DTMF from the call leg of the user/device configured with a metaflow. This is the "self" option (and the default if left unspecified). A metaflow can alternatively listen only to the other leg of the call using "peer", or to both sides of the call using "both".
+Most of the time, a metaflow will only be concerned with receiving the DTMF from the call leg of the user/device configured with a metaflow. This is the "self" option (and the default if left unspecified). A metaflow can alternatively listen only to the other leg of the call using "peer", or to both
+sides of the call using "both".
 
 ::
 

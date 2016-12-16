@@ -19,7 +19,8 @@ It is possible to add numbers, in bulk, to an account using the Jobs API below. 
 
 You can configure how frequently the system checks for failed jobs in ``system_config/crossbar.resources``, using the ``job_recover_timeout_s`` key (defaults to 6 hours).
 
-You can configure how what is considered a 'stalled' job by defining how old the job is (the last time the job document was modified) relative to the current time. Configure in ``system_config/crossbar.resources``, using the ``job_recover_threshold_s`` key (defaults to 1 hour). If a job is not completed, and hasn't been modified in over an hour, there's a good chance the job executor died. A new job executor will be started to pick up where the old one left off.
+You can configure how what is considered a 'stalled' job by defining how old the job is (the last time the job document was modified) relative to the current time. Configure in ``system_config/crossbar.resources``, using the ``job_recover_threshold_s`` key (defaults to 1 hour). If a job is not
+completed, and hasn't been modified in over an hour, there's a good chance the job executor died. A new job executor will be started to pick up where the old one left off.
 
 Resources Schema
 ^^^^^^^^^^^^^^^^

@@ -137,7 +137,8 @@ Schema
 | ``username``        | The user's API username                         | ``string(1..254)``   |           | ``true``    |
 +---------------------+-------------------------------------------------+----------------------+-----------+-------------+
 
-Sometimes it is necessary to recover a password. Similar to user authentication, you can supply the account realm, the account name, or a phone number associated with the account to send a password reset to the user's email. This email will contain a link that one then click to verify identity & proceed with recovery.
+Sometimes it is necessary to recover a password. Similar to user authentication, you can supply the account realm, the account name, or a phone number associated with the account to send a password reset to the user's email. This email will contain a link that one then click to verify identity &
+proceed with recovery.
 
     PUT /v2/user\_auth/recovery
 

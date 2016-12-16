@@ -6,7 +6,8 @@ Fax Subsystem Overview
 
 The Faxes API exposes lots of ways to send, receive, track and manage faxes.
 
-As a general concept, faxes are either considered inbound or outbound faxes. In addition: \* API calls with the term "incoming" are used for tracking faxes currently in the process of being received \* API calls with the term "inbox" are used for managing faxes which have already been received \* API calls with the term "outgoing" are used for tracking faxes currently in the process of being sent \* API calls with the term "outbox" are used for managing faxes which have already been sent
+As a general concept, faxes are either considered inbound or outbound faxes. In addition: \* API calls with the term "incoming" are used for tracking faxes currently in the process of being received \* API calls with the term "inbox" are used for managing faxes which have already been received \*
+API calls with the term "outgoing" are used for tracking faxes currently in the process of being sent \* API calls with the term "outbox" are used for managing faxes which have already been sent
 
 Schema
 ^^^^^^
@@ -142,7 +143,8 @@ In the first method, you can create a fax document that includes a URL which con
         "auth_token":"{AUTH_TOKEN}"
     }
 
-In the second method, you can use a single PUT request and send a multipart content-type to attach both the JSON metadata about the fax transmission and the document itself, in a single request. This avoids needing to have an external storage location for storing fax attachments prior to processing. This is a good solution for portals that upload documents.
+In the second method, you can use a single PUT request and send a multipart content-type to attach both the JSON metadata about the fax transmission and the document itself, in a single request. This avoids needing to have an external storage location for storing fax attachments prior to processing.
+This is a good solution for portals that upload documents.
 
 .. code:: shell
 
@@ -303,7 +305,8 @@ Fetch the fax payload
 Fetch logs related to outbound faxes submitted via email
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If a fax job was queued or attempted to be queued as the result of an inbound email, the SMTP log for that fax can be retrieved via this API. This is also useful for helping debug problems with inbound faxes, such as when the domain matched an account for an inbound fax, but not a specific faxbox, and thus failed to process.
+If a fax job was queued or attempted to be queued as the result of an inbound email, the SMTP log for that fax can be retrieved via this API. This is also useful for helping debug problems with inbound faxes, such as when the domain matched an account for an inbound fax, but not a specific faxbox,
+and thus failed to process.
 
     GET /v2/accounts/{ACCOUNT\_ID}/faxes/smtplog
 

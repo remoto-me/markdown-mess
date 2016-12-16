@@ -376,7 +376,8 @@ Fetch an account's ancestor tree
 Fetch the account's API key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The API key is used by the ``api_auth`` API to obtain an ``auth_token``. This is intended for use by applications talking to kazoo and provides a mechanism for authentication that does not require storing a username and password in the application. The API key can be obtained via the accounts API's endpoint ``api_key``.
+The API key is used by the ``api_auth`` API to obtain an ``auth_token``. This is intended for use by applications talking to kazoo and provides a mechanism for authentication that does not require storing a username and password in the application. The API key can be obtained via the accounts API's
+endpoint ``api_key``.
 
     GET /v2/accounts/{ACCOUNT\_ID}/api\_key
 
@@ -401,7 +402,8 @@ The API key is used by the ``api_auth`` API to obtain an ``auth_token``. This is
 Fetch sibling accounts
 ^^^^^^^^^^^^^^^^^^^^^^
 
-By default a user account under an admin/reseller account can view all the other accounts under that reseller. If you would like current account only will be able to query its child accounts' sibling and not other accounts then set ``allow_sibling_listing`` in ``system_config/crossbar.accounts`` to ``false``. Admin account can unrestrictedly list siblings.
+By default a user account under an admin/reseller account can view all the other accounts under that reseller. If you would like current account only will be able to query its child accounts' sibling and not other accounts then set ``allow_sibling_listing`` in ``system_config/crossbar.accounts`` to
+``false``. Admin account can unrestrictedly list siblings.
 
     GET /v2/accounts/{ACCOUNT\_ID}/siblings
 

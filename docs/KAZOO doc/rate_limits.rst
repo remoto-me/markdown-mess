@@ -13,7 +13,8 @@ JSON object has self-describing structure. The name of the root key is "rate\_li
 
 The application-level system-wide configuration resides in system\_config/frontier document and its syntax is equal to the account-level documents.
 
--  Account-level document contains two sections: The "account" section sets rate limits for the entire account The "device" section sets rate limits for devices inside the account (if not overwritten by device-level rate limits) Both sections contain "registrations", "invites" and "total\_packets" keys with integer values of possible number of packets within "per\_minute" and "per\_second" sections
+-  Account-level document contains two sections: The "account" section sets rate limits for the entire account The "device" section sets rate limits for devices inside the account (if not overwritten by device-level rate limits) Both sections contain "registrations", "invites" and "total\_packets"
+   keys with integer values of possible number of packets within "per\_minute" and "per\_second" sections
 
 Example
        

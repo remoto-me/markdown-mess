@@ -95,7 +95,8 @@ Some clients do not support the full range of HTTP verbs, and are typically limi
 Tunneling the Accept Header
                            
 
-Some clients do not support the ability to set the `Accept header <http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html>`__ in the request, meaning they will not necessarily receive the response in the format they wish. Clients can append ``accept=text/html`` to the request body or query string to indicate they'd like the response processed as if the Accept header was ``text/html``.
+Some clients do not support the ability to set the `Accept header <http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html>`__ in the request, meaning they will not necessarily receive the response in the format they wish. Clients can append ``accept=text/html`` to the request body or query string to
+indicate they'd like the response processed as if the Accept header was ``text/html``.
 
 *Note*: ``accept=csv`` is retained for backwards-compatibility but it is encouraged to use a proper media type going forward.
 

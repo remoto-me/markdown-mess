@@ -13,7 +13,8 @@ These rules are created when the system creates an auth token. Rules can be load
 How it works?
 ^^^^^^^^^^^^^
 
-When you make request to Crossbar (API), the system loads rules from auth token (used for authentitcation) and tries to apply the rules to URI (``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/``). More information about URI structure can be found `here <basics.md>`__. If Crossbar doesn't find a match for all parameters (endpoint name, account id, endpoint arguments, HTTP method), then it halts the request and returns a 403 error.
+When you make request to Crossbar (API), the system loads rules from auth token (used for authentitcation) and tries to apply the rules to URI (``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/``). More information about URI structure can be found `here <basics.md>`__. If Crossbar doesn't find a
+match for all parameters (endpoint name, account id, endpoint arguments, HTTP method), then it halts the request and returns a 403 error.
 
 Template structure
 ^^^^^^^^^^^^^^^^^^
@@ -44,7 +45,8 @@ Each template can have different rules for different authentication methods and 
 -  ``PRIV_LEVEL_#`` - name of privilege level of authenticated user (``admin``, ``user``, etc). This level is set in ``priv_level`` property of user document. If authentication method doesn't have a user associated (such as ``cb_api_auth``) then select ``admin`` set of rules.
 -  ``RULES`` - set of rules which will be saved in auth token document.
 
-Auth method and priv level can be matched with "catch all" term - ``"_"``. If no exact match for auth method or priv level is found, the system will look for the 'catch all' rules, if any. The rules are loaded into the auth token document when it is created (after successful authentication) and will be applied to any request using the auth token created.
+Auth method and priv level can be matched with "catch all" term - ``"_"``. If no exact match for auth method or priv level is found, the system will look for the 'catch all' rules, if any. The rules are loaded into the auth token document when it is created (after successful authentication) and will
+be applied to any request using the auth token created.
 
 Example template:
 
@@ -127,7 +129,8 @@ Match order
 Endpoint match
 ''''''''''''''
 
-At this step module compare resource from URI with resource names in token restrictions. If URI is ``/v2/accounts/{ACCOUNT_ID}/users/{USER_ID}/{MODIFIER}/`` then endpoint will be ``users``, and ``{USER_ID}``, ``{MODIFIER}`` are arguments of this endpoint. Rules applied to the last endpoint in URI. You can use "catch all" (``"_"``) endpoint name. First tries exact endpoint name: if not found, try the catch-all (if it exists).
+At this step module compare resource from URI with resource names in token restrictions. If URI is ``/v2/accounts/{ACCOUNT_ID}/users/{USER_ID}/{MODIFIER}/`` then endpoint will be ``users``, and ``{USER_ID}``, ``{MODIFIER}`` are arguments of this endpoint. Rules applied to the last endpoint in URI.
+You can use "catch all" (``"_"``) endpoint name. First tries exact endpoint name: if not found, try the catch-all (if it exists).
 
 .. code:: json
 
@@ -335,7 +338,8 @@ Change account's token restrictions
         -d @data.txt
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/token_restrictions
 
-File ``data.txt`` contains this restrictions: \* ``admin`` has full access \* ``operator`` can view/create/update devices (but not delete), full access to callflows, all other API restricted \* ``accountant`` can only view transactions, all other API restricted \* ``user`` can only view devices and other users. all other API restricted
+File ``data.txt`` contains this restrictions: \* ``admin`` has full access \* ``operator`` can view/create/update devices (but not delete), full access to callflows, all other API restricted \* ``accountant`` can only view transactions, all other API restricted \* ``user`` can only view devices and
+other users. all other API restricted
 
 .. code:: json
 

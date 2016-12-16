@@ -107,9 +107,11 @@ Body
         }
     }
 
-``FILTER_LIST`` is a list of filters to apply to the query. See Filters for more info. ``GROUPING`` is an optional way of further grouping your results. If a grouping is specified then results will be grouped by that field, within the time period grouping. Any fields in the fields section of the Filter section marked as groupable can be used. ``TIMEZONE`` is an optional TZ format timezone, eg. "Pacific/Auckland". This is used for both the request and response times.
+``FILTER_LIST`` is a list of filters to apply to the query. See Filters for more info. ``GROUPING`` is an optional way of further grouping your results. If a grouping is specified then results will be grouped by that field, within the time period grouping. Any fields in the fields section of the
+Filter section marked as groupable can be used. ``TIMEZONE`` is an optional TZ format timezone, eg. "Pacific/Auckland". This is used for both the request and response times.
 
-For example ``/v2/accounts/{ACCOUNT_ID}/call_statistics/hourly?q={%22filters%22:[{%22name%22:%22call_time%22,%22op%22:%22gte%22,%22val%22:%2200:00:00%2004/03/2016%22},{%22name%22:%22call_time%22,%22op%22:%22lte%22,%22val%22:%2223:00:00%2004/03/2016%22},{%22name%22:%22call_direction%22,%22op%22:%22in%22,%22val%22:[%22inbound%22,%22outbound%22]}],%22grouping%22:%22unanswered%22,%22timezone%22:%22Pacific/Auckland%22}``
+For example
+``/v2/accounts/{ACCOUNT_ID}/call_statistics/hourly?q={%22filters%22:[{%22name%22:%22call_time%22,%22op%22:%22gte%22,%22val%22:%2200:00:00%2004/03/2016%22},{%22name%22:%22call_time%22,%22op%22:%22lte%22,%22val%22:%2223:00:00%2004/03/2016%22},{%22name%22:%22call_direction%22,%22op%22:%22in%22,%22val%22:[%22inbound%22,%22outbound%22]}],%22grouping%22:%22unanswered%22,%22timezone%22:%22Pacific/Auckland%22}``
 
 ::
 
