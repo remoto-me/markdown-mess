@@ -1,0 +1,302 @@
+System\_configs
+~~~~~~~~~~~~~~~
+
+Manipulate documents in the ``system_config`` database via Crossbar.
+
+About System\_configs
+^^^^^^^^^^^^^^^^^^^^^
+
+You must be ``super_duper_admin`` to access this resource.
+
+Schema
+^^^^^^
+
+List all known configs
+^^^^^^^^^^^^^^^^^^^^^^
+
+    GET /v2/system\_configs
+
+.. code:: shell
+
+    curl -v -X GET \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        http://{SERVER}:8000/v2/system_configs
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": [
+            "notification.port_request_admin",
+            "notification.port_request",
+            "notification.port_rejected",
+            "notification.port_pending",
+            "notification.port_comment",
+            "notification.port_cancel",
+            "notification.password_recovery",
+            "notification.new_user",
+            "notification.new_account",
+            "notification.low_balance",
+            "notification.first_occurrence",
+            "notification.fax_outbound_to_email",
+            "notification.fax_outbound_error_to_email",
+            "notification.fax_inbound_to_email",
+            "notification.fax_inbound_error_to_email",
+            "notification.deregister",
+            "notification.denied_emergency_bridge",
+            "notification.customer_update",
+            "notification.cnam_request",
+            "modb",
+            "metaflows",
+            "media",
+            "konami",
+            "kazoo.pdf",
+            "kazoo_couch",
+            "kapps_maintenance",
+            "kapps_controller",
+            "hangups",
+            "fax",
+            "ecallmgr",
+            "doodle",
+            "datamgr",
+            "crossbar.token_restrictions",
+            "crossbar.resources",
+            "crossbar.port_requests",
+            "crossbar.phone_numbers",
+            "crossbar.notifications",
+            "crossbar.media",
+            "crossbar.contact_list",
+            "crossbar.cdrs",
+            "crossbar.callflows",
+            "crossbar.accounts",
+            "crossbar",
+            "callflow",
+            "braintree",
+            "blip",
+            "bli",
+            "blackhole",
+            "accounts",
+            "8b23cfb3383612cda8383047c20001a7"
+        ],
+        "next_start_key": "notification.port_scheduled",
+        "page_size": 50,
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Delete the whole config
+^^^^^^^^^^^^^^^^^^^^^^^
+
+    DELETE /v2/system\_configs/{SYSTEM\_CONFIG\_ID}
+
+Note: use ``?hard=true`` to permanently delete the document.
+
+.. code:: shell
+
+    curl -v -X DELETE \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        http://{SERVER}:8000/v2/system_configs/bli
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Get config for all nodes
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+    GET /v2/system\_configs/{SYSTEM\_CONFIG\_ID}
+
+.. code:: shell
+
+    curl -v -X GET \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        http://{SERVER}:8000/v2/system_configs/blip
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": {
+            "default": {
+                "blop": ""
+                "k": [
+                    "value1"
+                ]
+            },
+            "kazoo_apps@termina.tor": {
+                "T": 42
+            },
+        },
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Update config for many nodes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    POST /v2/system\_configs/{SYSTEM\_CONFIG\_ID}
+
+.. code:: shell
+
+    curl -v -X POST \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        -d '{"data": {"default": {"key": "my string", "blop": null}}}' \
+        http://{SERVER}:8000/v2/system_configs/blip
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": {
+            "default": {
+                "k": [
+                    "value1"
+                ],
+                "key": "my string"
+            },
+            "kazoo_apps@termina.tor": {
+                "T": 42
+            },
+        },
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Create a new config
+^^^^^^^^^^^^^^^^^^^
+
+    PUT /v2/system\_configs/{SYSTEM\_CONFIG\_ID}
+
+.. code:: shell
+
+    curl -v -X PUT \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        -d '{"data": {"default": {"bla": "1"}, "hi@oh.com": {"digit": 23}}}' \
+        http://{SERVER}:8000/v2/system_configs/candle_jack
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": {
+            "default": {
+                "bla": "1"
+            },
+            "hi@oh.com": {
+                "digit": 23
+            },
+            "id": "candle_jack"
+        },
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Successful creation
+'''''''''''''''''''
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": {
+            "name": ""
+        },
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Error: old soft-deleted document still exists
+'''''''''''''''''''''''''''''''''''''''''''''
+
+Note: to avoid conflicts use hard deletes. However, soft deletes leave
+you the possibility to rollback to a previous version.
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": {
+            "message": "conflicting documents"
+        },
+        "error": "409",
+        "message": "datastore_conflict",
+        "request_id": "{REQUEST_ID}",
+        "status": "error"
+    }
+
+Delete node specific config
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    DELETE /v2/system\_configs/{SYSTEM\_CONFIG\_ID}/{NODE}
+
+.. code:: shell
+
+    curl -v -X DELETE \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        http://{SERVER}:8000/v2/system_configs/blip/kazoo_apps@termina.tor
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Get node-specific config
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+    GET /v2/system\_configs/{SYSTEM\_CONFIG\_ID}/{NODE}
+
+.. code:: shell
+
+    curl -v -X GET \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        http://{SERVER}:8000/v2/system_configs/blip/kazoo_apps@termina.tor
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": {
+            "T": 42
+        },
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
+
+Update node-specific config
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    POST /v2/system\_configs/{SYSTEM\_CONFIG\_ID}/{NODE}
+
+.. code:: shell
+
+    curl -v -X POST \
+        -H "X-Auth-Token: {AUTH_TOKEN}" \
+        -d '{"data": {"T": 42}}' \
+        http://{SERVER}:8000/v2/system_configs/blip/kazoo_apps@termina.tor
+
+.. code:: json
+
+    {
+        "auth_token": "{AUTH_TOKEN}",
+        "data": {
+            "T": 42
+        },
+        "request_id": "{REQUEST_ID}",
+        "revision": "{REVISION}",
+        "status": "success"
+    }
