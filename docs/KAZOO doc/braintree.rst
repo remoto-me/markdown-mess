@@ -4,35 +4,25 @@ Braintree
 About Braintree
 ^^^^^^^^^^^^^^^
 
-DISCLAIMER: Please read the `docs available at
-braintree <https://developers.braintreepayments.com/>`__ to know how
-braintree works and how its APIs are intended to work.
+DISCLAIMER: Please read the `docs available at braintree <https://developers.braintreepayments.com/>`__ to know how braintree works and how its APIs are intended to work.
 
-Braintree provides good docs to make you knowledgeable about what are
-important fields and what fields can be left from the API requests.
+Braintree provides good docs to make you knowledgeable about what are important fields and what fields can be left from the API requests.
 
-This doc just provides examples as what is possible with the API but you
-should consult braintree and their API documentation before using
-kazoo's braintree modules.
+This doc just provides examples as what is possible with the API but you should consult braintree and their API documentation before using kazoo's braintree modules.
 
-Test out braintree using sandbox account before deploying it in
-production as the module is considered *NOT PRODUCTION READY*.
+Test out braintree using sandbox account before deploying it in production as the module is considered *NOT PRODUCTION READY*.
 
 Schema
 ^^^^^^
 
-Schemas for Braintree requests can be viewed
-`here <https://developers.braintreepayments.com/>`__.
+Schemas for Braintree requests can be viewed `here <https://developers.braintreepayments.com/>`__.
 
 Client Token
 ^^^^^^^^^^^^
 
-Client Token is a new way of adding payment method where the credit card
-information is not sent to kazoo servers and is directly handled by
-braintree for compliance issues
+Client Token is a new way of adding payment method where the credit card information is not sent to kazoo servers and is directly handled by braintree for compliance issues
 
-See how it works -
-https://developers.braintreepayments.com/start/hello-server/ruby
+See how it works - https://developers.braintreepayments.com/start/hello-server/ruby
 
 .. figure:: https://developers.braintreepayments.com/img/developers/diagram-server-perspective.png
    :alt: alt tag
@@ -323,8 +313,7 @@ Create
 
     PUT /v2/accounts/{ACCOUNT\_ID}/braintree/cards
 
-To add a credit card the the information about a credit card can be sent
-in the request or payment\_token\_nonce
+To add a credit card the the information about a credit card can be sent in the request or payment\_token\_nonce
 
 With Payment Method Nonce
 
@@ -435,10 +424,7 @@ Change
 
     POST /v2/accounts/{ACCOUNT\_ID}/braintree/customer
 
-TO add a customer we can send the customer's info as with just
-customer's name, company and phone or can add a payment\_method\_nonce
-with it, or add a credit card with the customer info with card's info or
-with payment\_method\_nonce token
+TO add a customer we can send the customer's info as with just customer's name, company and phone or can add a payment\_method\_nonce with it, or add a credit card with the customer info with card's info or with payment\_method\_nonce token
 
 The user can be added without any credit card
 
@@ -452,8 +438,7 @@ The user can be added without any credit card
         }
     }
 
-Without any credit card and contains payment method nonce in their json
-request
+Without any credit card and contains payment method nonce in their json request
 
 .. code:: shell
 
@@ -513,8 +498,7 @@ Payment method nonce is added to the credit card section
 Fetch
 ^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/braintree/transactions/{TRANSACTION\_ID}
+    GET /v2/accounts/{ACCOUNT\_ID}/braintree/transactions/{TRANSACTION\_ID}
 
 .. code:: shell
 

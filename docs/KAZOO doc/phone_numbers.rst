@@ -294,14 +294,12 @@ Search for numbers
 
 Looks for numbers using the carrier module set up for your account.
 
--  ``PREFIX``: a 3-digit number prefix such as an area code (e.g.
-   ``415``)
+-  ``PREFIX``: a 3-digit number prefix such as an area code (e.g. ``415``)
 -  ``QUANTITY``: maximum amount of numbers to be returned (e.g. ``2``)
 -  ``OFFSET``: page number (e.g. ``0``)
 -  ``COUNTRY``: ISO3166 alpha-2 country code (e.g. ``US``)
 
-    GET
-    /v2/phone\_numbers?prefix={PREFIX}&quantity={QUANTITY}&offset={OFFSET}&country={COUNTRY}
+    GET /v2/phone\_numbers?prefix={PREFIX}&quantity={QUANTITY}&offset={OFFSET}&country={COUNTRY}
 
 .. code:: shell
 
@@ -350,13 +348,11 @@ Looks for numbers using the carrier module set up for your account.
 Search for available numbers you own
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  ``PREFIX``: a 3-digit number prefix or an URL-encoded e164 prefix
-   (e.g. ``499`` or ``%2B1499``)
+-  ``PREFIX``: a 3-digit number prefix or an URL-encoded e164 prefix (e.g. ``499`` or ``%2B1499``)
 -  ``QUANTITY``: maximum amount of numbers to be returned (e.g. ``2``)
 -  ``OFFSET``: page number (e.g. ``0``)
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/phone\_numbers?prefix={PREFIX}&quantity={QUANTITY}&offset={OFFSET}
+    GET /v2/accounts/{ACCOUNT\_ID}/phone\_numbers?prefix={PREFIX}&quantity={QUANTITY}&offset={OFFSET}
 
 .. code:: shell
 
@@ -391,8 +387,7 @@ List an account's phone numbers
 
 This lists the numbers an account owns, along with their properties.
 
-Note: one can apply filters such as ``?filter_state=in_service`` or
-``?created_from=63627345744``
+Note: one can apply filters such as ``?filter_state=in_service`` or ``?created_from=63627345744``
 
     GET /v2/accounts/{ACCOUNT\_ID}/phone\_numbers
 
@@ -451,13 +446,11 @@ Per-number CRUD operations
 
    -  e.g. turn ``+14155555555`` into ``%2B14155555555``
    -  Note ``4123456789`` is turned into ``+14123456789``
-   -  Note however, ``41234567`` is turned into ``+41234567``, so be
-      careful!
+   -  Note however, ``41234567`` is turned into ``+41234567``, so be careful!
 
 -  Note: to add/modify numbers, either:
 
-   -  Account document must be showing ``pvt_wnm_allow_additions`` as
-      ``true``
+   -  Account document must be showing ``pvt_wnm_allow_additions`` as ``true``
    -  Or auth must be done via master account.
 
 Remove a number from the account owning it
@@ -1302,8 +1295,7 @@ Fix issues
 Return which account a number belongs to
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/{PHONE\_NUMBER}/identify
+    GET /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/{PHONE\_NUMBER}/identify
 
 .. code:: shell
 
@@ -1394,8 +1386,7 @@ Create a number in the ``port_in`` state
 Move a number to the reserved state
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    PUT
-    /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/{PHONE\_NUMBER}/reserve
+    PUT /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/{PHONE\_NUMBER}/reserve
 
 .. code:: shell
 
@@ -1467,8 +1458,7 @@ Buy a number once searched for
 
 Note: one is not charged if number is already in service.
 
-    PUT
-    /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/{PHONE\_NUMBER}/activate
+    PUT /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/{PHONE\_NUMBER}/activate
 
 .. code:: shell
 
@@ -1540,8 +1530,7 @@ Carrier fault
 Classify a number
 ^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/classifiers/{PHONE\_NUMBER}
+    GET /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/classifiers/{PHONE\_NUMBER}
 
 .. code:: shell
 
@@ -1569,8 +1558,7 @@ Classify a number
 Buy a list of numbers
 ^^^^^^^^^^^^^^^^^^^^^
 
-Note: numbers must have appeared as part of the results of a numbers
-search.
+Note: numbers must have appeared as part of the results of a numbers search.
 
     PUT /v2/accounts/{ACCOUNT\_ID}/phone\_numbers/collection/activate
 

@@ -4,10 +4,7 @@ Devices
 About Devices
 ^^^^^^^^^^^^^
 
-Devices are the endpoints assigned to an account that serve that
-account's needs. Devices like fax machines, SIP phones, soft phone
-clients, and cell phones (via call fowarding), among others, can be
-represented by Kazoo devices.
+Devices are the endpoints assigned to an account that serve that account's needs. Devices like fax machines, SIP phones, soft phone clients, and cell phones (via call fowarding), among others, can be represented by Kazoo devices.
 
 Schema
 ^^^^^^
@@ -788,8 +785,7 @@ Fetch a device
 Change a device doc
 ^^^^^^^^^^^^^^^^^^^
 
-Including ``"sync":true`` in the "data" will attempt to reboot the
-phone. See the sync section below.
+Including ``"sync":true`` in the "data" will attempt to reboot the phone. See the sync section below.
 
     POST /v2/accounts/{ACCOUNT\_ID}/devices/{DEVICE\_ID}
 
@@ -927,8 +923,7 @@ Patch a device
 Fetch registration statuses of all devices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This will fetch the current registrations of any devices. If no devices
-are registered, an empty list will be returned.
+This will fetch the current registrations of any devices. If no devices are registered, an empty list will be returned.
 
     GET /v2/accounts/{ACCOUNT\_ID}/devices/status
 
@@ -956,10 +951,7 @@ are registered, an empty list will be returned.
 Reboot a device
 ^^^^^^^^^^^^^^^
 
-Some devices support receiving SIP NOTIFY packets with ``event`` =
-``check-sync``. This is typically used to reboot the phone if the
-configuration has changed. Kazoo will generate the NOTIFY packet if the
-device is registered.
+Some devices support receiving SIP NOTIFY packets with ``event`` = ``check-sync``. This is typically used to reboot the phone if the configuration has changed. Kazoo will generate the NOTIFY packet if the device is registered.
 
     POST /v2/accounts/{ACCOUNT\_ID}/devices/{DEVICE\_ID}/sync
 
@@ -984,9 +976,7 @@ Execute a quick call
 
 Ring the device; once answered, connect to ``{PHONE_NUMBER}``
 
-In this scenario, the device is considered the ``callee`` while the
-``{PHONE_NUMBER}`` side is considered the caller (helpful to know when
-debugging a call!).
+In this scenario, the device is considered the ``callee`` while the ``{PHONE_NUMBER}`` side is considered the caller (helpful to know when debugging a call!).
 
 Query string options:
 
@@ -1061,8 +1051,7 @@ Query string options:
 |      |       | 30)          |
 +------+-------+--------------+
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/devices/{DEVICE\_ID}/quickcall/{PHONE\_NUMBER}
+    GET /v2/accounts/{ACCOUNT\_ID}/devices/{DEVICE\_ID}/quickcall/{PHONE\_NUMBER}
 
 .. code:: shell
 
@@ -1149,19 +1138,14 @@ You can setup internal and external ringtones by adding this:
         }
     }
 
-See, for instance, the `Polycom
-example <https://freeswitch.org/confluence/display/FREESWITCH/Polycom+Internal+Ring>`__
+See, for instance, the `Polycom example <https://freeswitch.org/confluence/display/FREESWITCH/Polycom+Internal+Ring>`__
 
 Load a user's devices
 ^^^^^^^^^^^^^^^^^^^^^
 
-Often you'll want to see what devices belong to a user, or devices that
-a user has hot-desked into.
+Often you'll want to see what devices belong to a user, or devices that a user has hot-desked into.
 
-Notice that the first device, ``{DEVICE_ID_1}`` is owned by
-``{USER_ID}`` but the second device, ``{DEVICE_ID_2}``, is owned by
-``{OWNER_ID}`` **and** is currently hotdesked to ``{USER_ID}`` (see the
-``"hotdesked":true`` attribute).
+Notice that the first device, ``{DEVICE_ID_1}`` is owned by ``{USER_ID}`` but the second device, ``{DEVICE_ID_2}``, is owned by ``{OWNER_ID}`` **and** is currently hotdesked to ``{USER_ID}`` (see the ``"hotdesked":true`` attribute).
 
     GET /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}/devices
 
@@ -1203,8 +1187,7 @@ Notice that the first device, ``{DEVICE_ID_1}`` is owned by
 Create an Authn-By-IP Device
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Here is a minimal API request that creates a device that will
-authenticate by IP address instead of username/password
+Here is a minimal API request that creates a device that will authenticate by IP address instead of username/password
 
     PUT /v2/accounts/{ACCOUNT\_ID}/devices
 

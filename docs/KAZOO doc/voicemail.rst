@@ -4,22 +4,16 @@ Voicemail Boxes
 About Voicemail Boxes
 ^^^^^^^^^^^^^^^^^^^^^
 
-Voicemail boxes store messages, recorded from the caller, for the
-voicemail box owner to listen to at a later time.
+Voicemail boxes store messages, recorded from the caller, for the voicemail box owner to listen to at a later time.
 
 Differences between version 1 and 2 of Voicemail box
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As of Kazoo 4.0 all new voicemail messages will be stored in the account
-MODbs.
+As of Kazoo 4.0 all new voicemail messages will be stored in the account MODbs.
 
-Regarding this change voicemail API will ***no longer*** returns the
-messages array when fetching mailbox settings. The existing
-``/messages`` API *should be* used to manage messages in a voicemail
-box.
+Regarding this change voicemail API will ***no longer*** returns the messages array when fetching mailbox settings. The existing ``/messages`` API *should be* used to manage messages in a voicemail box.
 
-For more information about voicemail changes see documentation for
-kazoo\_voicemail.
+For more information about voicemail changes see documentation for kazoo\_voicemail.
 
 Schema
 ^^^^^^
@@ -468,21 +462,14 @@ Remove all or a list of messages from a voicemail box
 
     DELETE /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages
 
-Deleting all message is easy, just use ``DELETE`` method on message API
-endpoint to delete all account's messages.
+Deleting all message is easy, just use ``DELETE`` method on message API endpoint to delete all account's messages.
 
 Optional payload for deleting a group of messages:
 
--  One can apply a filter to delete all messages in a particular
-   folder(e.g. new or saved) by adding a query string ``?folder=saved``
-   to the URL or set it in the payload as
-   ``{"data": {"folder": "saved"}}``
--  Or providing an array of message ids, e.g
-   ``{"data": {"messages": [MSG_ID1, MSG_ID2, ...]}}``.
+-  One can apply a filter to delete all messages in a particular folder(e.g. new or saved) by adding a query string ``?folder=saved`` to the URL or set it in the payload as ``{"data": {"folder": "saved"}}``
+-  Or providing an array of message ids, e.g ``{"data": {"messages": [MSG_ID1, MSG_ID2, ...]}}``.
 
-**Note:** If you didn't move voicemail messages to the new format
-already, messages that are in old format will be moved to the new MODB
-format, which will cause their message id to change to the new format.
+**Note:** If you didn't move voicemail messages to the new format already, messages that are in old format will be moved to the new MODB format, which will cause their message id to change to the new format.
 
 .. code:: shell
 
@@ -558,28 +545,15 @@ Change a list of messages
 
     POST /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages
 
-Provide an array of message ids, e.g
-``{"data": {"messages": ["MSG_ID1", "MSG_ID2", "MSG_ID3"]}}`` you can do
-following change operations on them. It will return two objects: the
-first is all the message ids that were successfully changed and the
-second one is those that failed with the reasons.
+Provide an array of message ids, e.g ``{"data": {"messages": ["MSG_ID1", "MSG_ID2", "MSG_ID3"]}}`` you can do following change operations on them. It will return two objects: the first is all the message ids that were successfully changed and the second one is those that failed with the reasons.
 
--  **Change the folder of messages:** set the folder that messages
-   should move to (e.g. new or saved) by adding a query string
-   ``?folder=saved`` to the URL or set it in the payload as
-   ``{"data": {"folder": "saved"}}``.
+-  **Change the folder of messages:** set the folder that messages should move to (e.g. new or saved) by adding a query string ``?folder=saved`` to the URL or set it in the payload as ``{"data": {"folder": "saved"}}``.
 
--  **Move messages to another voicemail box:** set the destination
-   voicemail box ID in payload like:
-   ``{"data": {"source_id": "{NEW_VM_BOX_ID}"}}``
+-  **Move messages to another voicemail box:** set the destination voicemail box ID in payload like: ``{"data": {"source_id": "{NEW_VM_BOX_ID}"}}``
 
--  **Copy messages to a single or a list of voicemail boxes** set the
-   destination voicemail box ID in payload like:
-   ``{"data": {"source_id": ["{NEW_VM_BOX_ID}"]}}``
+-  **Copy messages to a single or a list of voicemail boxes** set the destination voicemail box ID in payload like: ``{"data": {"source_id": ["{NEW_VM_BOX_ID}"]}}``
 
-**Note:** If you didn't move voicemail messages to the new format
-already, messages that are in old format will be moved to the new MODB
-format, which will cause their message id to change to the new format.
+**Note:** If you didn't move voicemail messages to the new format already, messages that are in old format will be moved to the new MODB format, which will cause their message id to change to the new format.
 
 .. code:: shell
 
@@ -610,8 +584,7 @@ Fetch the raw audio of a list of messages as a ZIP file
 
     POST /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/raw
 
-You can provide a list of voicemail message ID in the playload and get
-raw audio of them in a single ZIP file.
+You can provide a list of voicemail message ID in the playload and get raw audio of them in a single ZIP file.
 
 .. code:: shell
 
@@ -625,12 +598,9 @@ raw audio of them in a single ZIP file.
 Remove a message from the voicemail box
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    DELETE
-    /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}
+    DELETE /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}
 
-**Note:** If you didn't move voicemail messages to the new format
-already, messages that are in old format will be moved to the new MODB
-format, which will cause their message id to change to the new format.
+**Note:** If you didn't move voicemail messages to the new format already, messages that are in old format will be moved to the new MODB format, which will cause their message id to change to the new format.
 
 .. code:: shell
 
@@ -664,8 +634,7 @@ Response
 Fetch a message from the voicemail box
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}
+    GET /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}
 
 .. code:: shell
 
@@ -673,10 +642,7 @@ Fetch a message from the voicemail box
         -H "X-Auth-Token: {AUTH_TOKEN}" \
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/vmboxes/{VM_BOX_ID}/messages/201605-6aadef09f6fcf5fd8bcdfca312e923ba
 
-**Note:** If message doesn't have a folder assign to it by any chance,
-it will be set to ``new`` by this method. Please also refer to the note
-for change the folder of a message regards of possible change of message
-id.
+**Note:** If message doesn't have a folder assign to it by any chance, it will be set to ``new`` by this method. Please also refer to the note for change the folder of a message regards of possible change of message id.
 
 Response
 ''''''''
@@ -704,25 +670,15 @@ Response
 Change a message
 ^^^^^^^^^^^^^^^^
 
--  **Change the folder of a message:** set the folder that message
-   should move to (e.g. new or saved) by adding a query string
-   ``?folder=saved`` to the URL or set it in the payload as
-   ``{"data": {"folder": "saved"}}``.
+-  **Change the folder of a message:** set the folder that message should move to (e.g. new or saved) by adding a query string ``?folder=saved`` to the URL or set it in the payload as ``{"data": {"folder": "saved"}}``.
 
--  **Move a message to another voicemail box:** set the destination
-   voicemail box ID in payload like:
-   ``{"data": {"source_id": "{NEW_VM_BOX_ID}"}}``
+-  **Move a message to another voicemail box:** set the destination voicemail box ID in payload like: ``{"data": {"source_id": "{NEW_VM_BOX_ID}"}}``
 
--  **Copy a message to a single or a list of voicemail boxes** set the
-   destination voicemail box ID in payload like:
-   ``{"data": {"source_id": ["{NEW_VM_BOX_ID}"]}}``
+-  **Copy a message to a single or a list of voicemail boxes** set the destination voicemail box ID in payload like: ``{"data": {"source_id": ["{NEW_VM_BOX_ID}"]}}``
 
-    POST
-    /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}
+    POST /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}
 
-**Note:** If you didn't move voicemail messages to the new format
-already, messages that are in old format will be moved to the new MODB
-format, which will cause their message id to change to the new format.
+**Note:** If you didn't move voicemail messages to the new format already, messages that are in old format will be moved to the new MODB format, which will cause their message id to change to the new format.
 
 .. code:: shell
 
@@ -757,13 +713,9 @@ Response
 Fetch the raw audio of the message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}/raw
+    GET /v2/accounts/{ACCOUNT\_ID}/vmboxes/{VM\_BOX\_ID}/messages/{VM\_MSG\_ID}/raw
 
-**Note:** If message doesn't have a folder assign to it by any chance,
-it will be set to ``new`` by this method. Please also refer to the note
-for change the folder of a message regards of possible change of message
-id.
+**Note:** If message doesn't have a folder assign to it by any chance, it will be set to ``new`` by this method. Please also refer to the note for change the folder of a message regards of possible change of message id.
 
 .. code:: shell
 

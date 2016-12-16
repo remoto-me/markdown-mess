@@ -4,9 +4,7 @@ Directories
 About Directories
 ^^^^^^^^^^^^^^^^^
 
-Directories provide the ability to route a caller to a user by having
-the caller enter DTMF corresponding to the directory users' first orlast
-names (versus having to know the user's extension).
+Directories provide the ability to route a caller to a user by having the caller enter DTMF corresponding to the directory users' first orlast names (versus having to know the user's extension).
 
 Schema
 ^^^^^^
@@ -115,8 +113,7 @@ Fetch a directory listing
 Fetch a directory as a PDF
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It is possible to fetch the directory as a PDF for download (such as a
-company direcotry, a sales department directory, etc)
+It is possible to fetch the directory as a PDF for download (such as a company direcotry, a sales department directory, etc)
 
     GET /v2/accounts/{ACCOUNT\_ID}/directories/{DIRECTORY\_ID}
 
@@ -127,9 +124,7 @@ company direcotry, a sales department directory, etc)
         -H "Accept: application/pdf"
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/directories/{DIRECTORY_ID}
 
-If your client doesn't support setting the ``Accept`` header, you can
-append ``?accept=pdf`` to the URI and Kazoo will pretend you sent the
-proper ``Accept`` header.
+If your client doesn't support setting the ``Accept`` header, you can append ``?accept=pdf`` to the URI and Kazoo will pretend you sent the proper ``Accept`` header.
 
 Patch
 ^^^^^

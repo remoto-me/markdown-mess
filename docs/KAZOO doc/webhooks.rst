@@ -4,10 +4,7 @@ Webhooks
 About Webhooks
 ^^^^^^^^^^^^^^
 
-Webhooks allow Kazoo to send HTTP requests to a third-party webserver,
-alerting that server of events occuring within Kazoo. Typically, events
-would be fired for new calls, when a call is answered, and when a call
-is finished, though other events will be added in the future.
+Webhooks allow Kazoo to send HTTP requests to a third-party webserver, alerting that server of events occuring within Kazoo. Typically, events would be fired for new calls, when a call is answered, and when a call is finished, though other events will be added in the future.
 
 Schema
 ^^^^^^
@@ -70,12 +67,9 @@ Schema
 List Installed Webhooks
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Webhooks are installed by the system administrator. You can query
-Crossbar to see which are installed.
+Webhooks are installed by the system administrator. You can query Crossbar to see which are installed.
 
-Some webhooks will also include a ``modifiers`` object; these are
-parameters specific to that webhook that can be used to modify the
-behaviour of the webhook.
+Some webhooks will also include a ``modifiers`` object; these are parameters specific to that webhook that can be used to modify the behaviour of the webhook.
 
     GET /v2/webhooks
 
@@ -154,8 +148,7 @@ List webhooks
 
     GET /v2/accounts/{ACCOUNT\_ID}/webhooks
 
-Any webhooks with *disable\_reason* in the summary has been
-auto-disabled.
+Any webhooks with *disable\_reason* in the summary has been auto-disabled.
 
 .. code:: shell
 
@@ -241,8 +234,7 @@ Delete a webhook
 List Webhook Attempts
 ^^^^^^^^^^^^^^^^^^^^^
 
-Webhooks tracks attempts to send the hook payloads to your URIs. You can
-get a listing of the more recent attempts to help debug what went wrong.
+Webhooks tracks attempts to send the hook payloads to your URIs. You can get a listing of the more recent attempts to help debug what went wrong.
 
     GET /v2/accounts/{ACCOUNT\_ID}/webhooks/attempts
 
@@ -289,12 +281,7 @@ List attempts for a specific attempt
 Re-enable auto-disabled hooks in bulk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Webhooks will auto-disable failing hooks (if Kazoo can't reach your
-server, or you take too long to respond with ``200 OK``, for instance).
-Especially if you're a reseller with webhooks in your client accounts,
-it can be tedious to have to iterate through all your accounts and
-re-enable each hook. Fortunately, you can perform this bulk-enable
-action against an account or an account and its descendants.
+Webhooks will auto-disable failing hooks (if Kazoo can't reach your server, or you take too long to respond with ``200 OK``, for instance). Especially if you're a reseller with webhooks in your client accounts, it can be tedious to have to iterate through all your accounts and re-enable each hook. Fortunately, you can perform this bulk-enable action against an account or an account and its descendants.
 
 Enable an account's hooks
 
@@ -321,8 +308,7 @@ Enable an account's and descendant accounts' hooks
 Hook Payload
 ^^^^^^^^^^^^
 
-Here's what you can expect to receive when a webhook fires to your
-server:
+Here's what you can expect to receive when a webhook fires to your server:
 
 **Base Payload**
 
@@ -355,8 +341,7 @@ Most of these fields should be present on all payloads.
 -  channel\_destroy
 
    -  hook\_event: channel\_destroy
-   -  hangup\_cause: SIP Hangup Cause (NORMAL\_CLEARING,
-      ORIGINATOR\_CANCEL, etc)
+   -  hangup\_cause: SIP Hangup Cause (NORMAL\_CLEARING, ORIGINATOR\_CANCEL, etc)
    -  hangup\_code: SIP Hangup Code (404, 503, etc)
 
 -  doc
@@ -368,8 +353,7 @@ Most of these fields should be present on all payloads.
 Hook Specific Custom Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To restrict the kind of document or the action or both. You can set the
-custom data to:
+To restrict the kind of document or the action or both. You can set the custom data to:
 
 .. code:: json
 

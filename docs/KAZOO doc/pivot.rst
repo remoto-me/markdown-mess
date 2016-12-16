@@ -4,15 +4,12 @@ Pivot
 About Pivot
 ^^^^^^^^^^^
 
-The Pivot Crossbar resource allows the client to query and inspect data
-related to the `Pivot </applications/pivot>`__ application (real-time
-call control).
+The Pivot Crossbar resource allows the client to query and inspect data related to the `Pivot </applications/pivot>`__ application (real-time call control).
 
 Enabling in Crossbar
 ^^^^^^^^^^^^^^^^^^^^
 
-The Pivot endpoint is not loaded on start in a default Kazoo
-installation.
+The Pivot endpoint is not loaded on start in a default Kazoo installation.
 
 -  To enable at runtime:
 
@@ -20,16 +17,12 @@ installation.
 
 -  To autostart on Crossbar boot:
 
-   -  Navigate to
-      ``http://localhost:15984/_utils/document.html?system_config/crossbar``
+   -  Navigate to ``http://localhost:15984/_utils/document.html?system_config/crossbar``
    -  Edit the ``autoload_modules`` list to include 'cb\_pivot'
    -  Click the green check box to the right of the input box
    -  Click 'Save Document' in top left of the screen
 
-Note: adding ``cb_pivot`` to the crossbar ``system_config`` doc will not
-start the endpoint; only on restarting Crossbar will ``cb_pivot`` be
-loaded. Use the `sup <./sup.md>`__ command above to start the endpoint
-at runtime.
+Note: adding ``cb_pivot`` to the crossbar ``system_config`` doc will not start the endpoint; only on restarting Crossbar will ``cb_pivot`` be loaded. Use the `sup <./sup.md>`__ command above to start the endpoint at runtime.
 
 Callflow Schema
 ^^^^^^^^^^^^^^^
@@ -78,8 +71,7 @@ Any pivot callflow node must obey this schema.
 Debugging pivot attempts
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-You will need to edit the "data" object in the "pivot" callflow element
-to include a "debug" flag:
+You will need to edit the "data" object in the "pivot" callflow element to include a "debug" flag:
 
 .. code:: json
 
@@ -95,8 +87,7 @@ to include a "debug" flag:
           }
         }
 
-All calls to this callflow will now store debug logs to the account's
-current MODb database.
+All calls to this callflow will now store debug logs to the account's current MODb database.
 
 Fetch debugged UUIDs
 ^^^^^^^^^^^^^^^^^^^^
@@ -179,6 +170,4 @@ Fetch debug logs for a UUID
           ,"status": "success"
          }
 
-Note: You must URL-encode the call-id in the URL. Typically this would
-just mean converting ``@`` to \`%40', but you'll need to take care
-depending on how your call-ids are constructed.
+Note: You must URL-encode the call-id in the URL. Typically this would just mean converting ``@`` to \`%40', but you'll need to take care depending on how your call-ids are constructed.

@@ -120,8 +120,7 @@ Add an entry to a list
 Delete entry from the list
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    DELETE
-    /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
+    DELETE /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
 
 .. code:: shell
 
@@ -132,8 +131,7 @@ Delete entry from the list
 List entry properties
 ^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
+    GET /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
 
 .. code:: shell
 
@@ -144,8 +142,7 @@ List entry properties
 Update list entry
 ^^^^^^^^^^^^^^^^^
 
-    PATCH
-    /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
+    PATCH /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
 
 .. code:: shell
 
@@ -157,8 +154,7 @@ Update list entry
 Replace list entry
 ^^^^^^^^^^^^^^^^^^
 
-    POST
-    /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
+    POST /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}
 
 .. code:: shell
 
@@ -170,8 +166,7 @@ Replace list entry
 Add photo to List entry
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-    POST
-    /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}/photo
+    POST /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}/photo
 
 .. code:: shell
 
@@ -182,8 +177,7 @@ Add photo to List entry
 List entry vcard
 ^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}/vcard
+    GET /v2/accounts/{ACCOUNT\_ID}/lists/{LIST\_ID}/entries/{LIST\_ENTRY\_ID}/vcard
 
 .. code:: shell
 

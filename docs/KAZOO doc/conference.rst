@@ -4,11 +4,7 @@ Conferences
 About Conferences
 ^^^^^^^^^^^^^^^^^
 
-Conferences documents are enriched with realtime information, namely:
-number of members, number of moderators, duration of the conference,
-conference locked status. The realtime information is added to
-conference document under \_read\_only key (to avoid accident document
-update).
+Conferences documents are enriched with realtime information, namely: number of members, number of moderators, duration of the conference, conference locked status. The realtime information is added to conference document under \_read\_only key (to avoid accident document update).
 
 Schema
 ^^^^^^
@@ -237,8 +233,7 @@ CONFERENCE\_ACTION: lock, unlock
 Fetch
 ^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/conferences/{CONFERENCE\_ID}/participants
+    GET /v2/accounts/{ACCOUNT\_ID}/conferences/{CONFERENCE\_ID}/participants
 
 .. code:: shell
 
@@ -249,8 +244,7 @@ Fetch
 Perform an action on participants
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    PUT
-    /v2/accounts/{ACCOUNT\_ID}/conferences/{CONFERENCE\_ID}/participants
+    PUT /v2/accounts/{ACCOUNT\_ID}/conferences/{CONFERENCE\_ID}/participants
 
 .. code:: shell
 
@@ -264,8 +258,7 @@ PARTICIPANTS\_ACTION: mute/unmute/deaf/undeaf/kick
 Perform an action on participant
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    PUT
-    /v2/accounts/{ACCOUNT\_ID}/conferences/{CONFERENCE\_ID}/participants/{PARTICIPANT\_ID}
+    PUT /v2/accounts/{ACCOUNT\_ID}/conferences/{CONFERENCE\_ID}/participants/{PARTICIPANT\_ID}
 
 .. code:: shell
 
@@ -363,25 +356,20 @@ Conference document
       }
     }
 
-join\_time is participant"s join time as epoch, duration is number of
-seconds participant participate in conference.
+join\_time is participant"s join time as epoch, duration is number of seconds participant participate in conference.
 
 Here we can see values set up for a Member, then for a Moderator.
 
-The last field, **play\_entry\_tone**, is at the root of the document:
-meaning this field applies to everyone in the conference.
+The last field, **play\_entry\_tone**, is at the root of the document: meaning this field applies to everyone in the conference.
 
 Available fields
 ^^^^^^^^^^^^^^^^
 
--  **play\_entry\_tone** and **play\_exit\_tone**: can be either a
-   boolean or a non-empty string.
+-  **play\_entry\_tone** and **play\_exit\_tone**: can be either a boolean or a non-empty string.
 
-   -  ``true`` means play the default tone when someone joins (or
-      leaves) the conference
+   -  ``true`` means play the default tone when someone joins (or leaves) the conference
    -  ``false`` disables the tone from being played
-   -  A string like a *tone string* or a *URI to a media file* can be
-      inputed.
+   -  A string like a *tone string* or a *URI to a media file* can be inputed.
 
 Actions
 ^^^^^^^
@@ -423,14 +411,9 @@ Participant actions
 Web-socket events
 ~~~~~~~~~~~~~~~~~
 
-A client may subscribe to conference event using websocket connection.
-Participant events are published as amqp
-conference.event.{conference\_id}.{call\_id}, where call\_id is
-participant"s call.
+A client may subscribe to conference event using websocket connection. Participant events are published as amqp conference.event.{conference\_id}.{call\_id}, where call\_id is participant"s call.
 
-The list of published events is determined by
-*publish\_participant\_event* parameter of ecallmgr configuration, if
-parameter is unset, then all events are published.
+The list of published events is determined by *publish\_participant\_event* parameter of ecallmgr configuration, if parameter is unset, then all events are published.
 
 Participant events
 ^^^^^^^^^^^^^^^^^^

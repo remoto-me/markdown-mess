@@ -4,14 +4,11 @@ Call\_inspector
 About Call\_inspector
 ^^^^^^^^^^^^^^^^^^^^^
 
-The Call Inspector Crossbar resource allows the client to query and
-inspect data related to the Call Inspector application.
+The Call Inspector Crossbar resource allows the client to query and inspect data related to the Call Inspector application.
 
-`More info on Call
-Inspector <https://github.com/2600hz/kazoo/blob/master/applications/call_inspector/doc/README.md>`__.
+`More info on Call Inspector <https://github.com/2600hz/kazoo/blob/master/applications/call_inspector/doc/README.md>`__.
 
-The Call Inspector endpoint is not loaded on start in a default Kazoo
-installation.
+The Call Inspector endpoint is not loaded on start in a default Kazoo installation.
 
 -  To enable at runtime:
 
@@ -19,17 +16,12 @@ installation.
 
 -  To autostart on Crossbar boot:
 
-   -  Navigate to
-      ``http://localhost:15984/_utils/document.html?system_config/crossbar``
-   -  Edit the ``autoload_modules`` list to include
-      'cb\_call\_inspector'
+   -  Navigate to ``http://localhost:15984/_utils/document.html?system_config/crossbar``
+   -  Edit the ``autoload_modules`` list to include 'cb\_call\_inspector'
    -  Click the green check box to the right of the input box
    -  Click 'Save Document' in top left of the screen
 
-Note: adding cb\_call\_inspector to the crossbar system\_config doc will
-not start the endpoint; only on restarting Crossbar will
-cb\_call\_inspector be loaded. Use the *sup* command above to start the
-endpoint at runtime.
+Note: adding cb\_call\_inspector to the crossbar system\_config doc will not start the endpoint; only on restarting Crossbar will cb\_call\_inspector be loaded. Use the *sup* command above to start the endpoint at runtime.
 
 Schema
 ^^^^^^
@@ -61,8 +53,7 @@ Read a call's SIP dialogue
 
     GET /v2/accounts/{ACCOUNT\_ID}/call\_inspector/{CALL\_ID}
 
--  ``{CALL_ID}`` is the unique string identifying a call. Call has to be
-   under the authority of ``{ACCOUNT_ID}``.
+-  ``{CALL_ID}`` is the unique string identifying a call. Call has to be under the authority of ``{ACCOUNT_ID}``.
 -  ``{ACCOUNT_ID}`` has to be a reseller's account id.
 
 Note: ``{CHUNKS}`` is an array of JSON-formated chunks.

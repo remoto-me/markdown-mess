@@ -1,36 +1,21 @@
 Token\_auth
 ~~~~~~~~~~~
 
-Authentication tokens are generated using one of the authentication
-endpoints exposed by Crossbar. See `User
-Authentication <./user_authentication.md>`__ and `API
-Authentication <./api_authentication.md>`__ as examples of generating
-authentication tokens.
+Authentication tokens are generated using one of the authentication endpoints exposed by Crossbar. See `User Authentication <./user_authentication.md>`__ and `API Authentication <./api_authentication.md>`__ as examples of generating authentication tokens.
 
 About Token\_auth
 ^^^^^^^^^^^^^^^^^
 
-Once you have an authentication token, you can access various Crossbar
-resource endpoints to manipulate the system or your account (provided
-you have the access).
+Once you have an authentication token, you can access various Crossbar resource endpoints to manipulate the system or your account (provided you have the access).
 
-Authentication tokens refresh their pvt\_modified timestamp each time
-they are used in an API request. Once an authentication token's
-pvt\_modified timestamp has passed a configurable timeout (usually one
-hour), it is automatically cleaned up by the system and no longer valid.
+Authentication tokens refresh their pvt\_modified timestamp each time they are used in an API request. Once an authentication token's pvt\_modified timestamp has passed a configurable timeout (usually one hour), it is automatically cleaned up by the system and no longer valid.
 
 Token Restrictions
 ^^^^^^^^^^^^^^^^^^
 
-The authentication token can be created with restrictions on what
-resource URIs (and HTTP methods) can be accessed by the requestor. This
-payload is added to the authentication payload used in any of the
-authentication methods provided (`User <./user_authentication.md>`__,
-`API <./api_authentication.md>`__, etc).
+The authentication token can be created with restrictions on what resource URIs (and HTTP methods) can be accessed by the requestor. This payload is added to the authentication payload used in any of the authentication methods provided (`User <./user_authentication.md>`__, `API <./api_authentication.md>`__, etc).
 
-For example, when creating an authentication token via `API
-key <./api_authentication.md>`__, include the following object to
-restrict the resultant authentication token to read-only:
+For example, when creating an authentication token via `API key <./api_authentication.md>`__, include the following object to restrict the resultant authentication token to read-only:
 
 .. code:: json
 
@@ -45,8 +30,7 @@ restrict the resultant authentication token to read-only:
         }
     }
 
-AMQP binding tokens are used (``#`` and ``*``) to denote wildcards. An
-example with more fine-grained restrictions:
+AMQP binding tokens are used (``#`` and ``*``) to denote wildcards. An example with more fine-grained restrictions:
 
 .. code:: json
 
@@ -72,11 +56,7 @@ example with more fine-grained restrictions:
         }
     }
 
-This would restrict the authentication token to only be able to access
-{ACCOUNT\_ID}'s users resource and perform all of the CRUD actions (as
-well as quickcall and channel listings for a user). We can simply this
-restrictions object by using ``*`` for the method and ``#`` to match any
-URI with ``/users``:
+This would restrict the authentication token to only be able to access {ACCOUNT\_ID}'s users resource and perform all of the CRUD actions (as well as quickcall and channel listings for a user). We can simply this restrictions object by using ``*`` for the method and ``#`` to match any URI with ``/users``:
 
 .. code:: json
 
@@ -98,9 +78,7 @@ Delete an authentication token
 
     DELETE /v2/token\_auth
 
-If you'd like to invalidate an authentication token programmatically
-(versus letting the system expire the token), you can issue a
-``DELETE``:
+If you'd like to invalidate an authentication token programmatically (versus letting the system expire the token), you can issue a ``DELETE``:
 
 .. code:: shell
 

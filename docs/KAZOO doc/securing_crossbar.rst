@@ -1,11 +1,9 @@
 Setup SSL support for Crossbar
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note: all commands are run from
-``$KAZOO/applications/crossbar/priv/ssl/``.
+Note: all commands are run from ``$KAZOO/applications/crossbar/priv/ssl/``.
 
-1. Create the root key (skip if you have a root key already that you
-   want to use):
+1. Create the root key (skip if you have a root key already that you want to use):
 
 .. code:: shell
 
@@ -54,8 +52,7 @@ Note: all commands are run from
 
 5. Now generate the certificate signing request (CSR):
 
-Note: be sure, when answering the "Common Name" question to put either
-your FQDN or IP address that will show in the browser.
+Note: be sure, when answering the "Common Name" question to put either your FQDN or IP address that will show in the browser.
 
 .. code:: shell
 
@@ -98,8 +95,7 @@ your FQDN or IP address that will show in the browser.
     subject=/C=US/ST=California/L=San Francisco/O=2600Hz/CN=thinky64.2600hz.com
     Getting Private key
 
-8. Now modify the ``crossbar`` doc in the ``system_config`` database
-   with the following values:
+8. Now modify the ``crossbar`` doc in the ``system_config`` database with the following values:
 
 .. code:: json
 

@@ -4,17 +4,9 @@ Faxes
 Fax Subsystem Overview
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The Faxes API exposes lots of ways to send, receive, track and manage
-faxes.
+The Faxes API exposes lots of ways to send, receive, track and manage faxes.
 
-As a general concept, faxes are either considered inbound or outbound
-faxes. In addition: \* API calls with the term "incoming" are used for
-tracking faxes currently in the process of being received \* API calls
-with the term "inbox" are used for managing faxes which have already
-been received \* API calls with the term "outgoing" are used for
-tracking faxes currently in the process of being sent \* API calls with
-the term "outbox" are used for managing faxes which have already been
-sent
+As a general concept, faxes are either considered inbound or outbound faxes. In addition: \* API calls with the term "incoming" are used for tracking faxes currently in the process of being received \* API calls with the term "inbox" are used for managing faxes which have already been received \* API calls with the term "outgoing" are used for tracking faxes currently in the process of being sent \* API calls with the term "outbox" are used for managing faxes which have already been sent
 
 Schema
 ^^^^^^
@@ -284,20 +276,14 @@ Processing States
 Sending Outbound Faxes
 ~~~~~~~~~~~~~~~~~~~~~~
 
-This section details APIs for manipulating job processing of outgoing
-faxes.
+This section details APIs for manipulating job processing of outgoing faxes.
 
 Create an outgoing fax
 ^^^^^^^^^^^^^^^^^^^^^^
 
-There are two methods for creating an outgoing fax - they differ in how
-you attach the fax file for processing.
+There are two methods for creating an outgoing fax - they differ in how you attach the fax file for processing.
 
-In the first method, you can create a fax document that includes a URL
-which contains the fax document to send. The fax document is fetched by
-the ``fax_jobs`` worker and distributed to ``fax_worker`` processes. You
-can fetch the status of the created job using the
-``faxes/outgoing/{FAX_ID}`` API.
+In the first method, you can create a fax document that includes a URL which contains the fax document to send. The fax document is fetched by the ``fax_jobs`` worker and distributed to ``fax_worker`` processes. You can fetch the status of the created job using the ``faxes/outgoing/{FAX_ID}`` API.
 
     PUT /v2/accounts/{ACCOUNT\_ID}/faxes
 
@@ -341,12 +327,7 @@ can fetch the status of the created job using the
         "auth_token":"{AUTH_TOKEN}"
     }
 
-In the second method, you can use a single PUT request and send a
-multipart content-type to attach both the JSON metadata about the fax
-transmission and the document itself, in a single request. This avoids
-needing to have an external storage location for storing fax attachments
-prior to processing. This is a good solution for portals that upload
-documents.
+In the second method, you can use a single PUT request and send a multipart content-type to attach both the JSON metadata about the fax transmission and the document itself, in a single request. This avoids needing to have an external storage location for storing fax attachments prior to processing. This is a good solution for portals that upload documents.
 
 .. code:: shell
 
@@ -373,9 +354,7 @@ This is identical to the ``PUT /faxes`` above.
 Fetch outgoing faxes and their statuses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This API retrieves a listing of all outgoing faxes. Use the "id" to
-fetch details about a particular job. Results will contain a listing of
-both API- and SMTP (email) - initiated outbound faxes.
+This API retrieves a listing of all outgoing faxes. Use the "id" to fetch details about a particular job. Results will contain a listing of both API- and SMTP (email) - initiated outbound faxes.
 
     GET /v2/accounts/{ACCOUNT\_ID}/faxes/outgoing
 
@@ -462,9 +441,7 @@ Managing Past Outbound Faxes
 Fetch all previously sent faxes in the outbox folder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This API retrieves a listing of all outgoing faxes which have already
-been sent or attempted and are no longer in queue. Results will contain
-a listing of both API- and SMTP (email) - initiated outbound faxes.
+This API retrieves a listing of all outgoing faxes which have already been sent or attempted and are no longer in queue. Results will contain a listing of both API- and SMTP (email) - initiated outbound faxes.
 
     GET /v2/accounts/{ACCOUNT\_ID}/faxes/outbox
 
@@ -511,11 +488,7 @@ Fetch the fax payload
 Fetch logs related to outbound faxes submitted via email
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If a fax job was queued or attempted to be queued as the result of an
-inbound email, the SMTP log for that fax can be retrieved via this API.
-This is also useful for helping debug problems with inbound faxes, such
-as when the domain matched an account for an inbound fax, but not a
-specific faxbox, and thus failed to process.
+If a fax job was queued or attempted to be queued as the result of an inbound email, the SMTP log for that fax can be retrieved via this API. This is also useful for helping debug problems with inbound faxes, such as when the domain matched an account for an inbound fax, but not a specific faxbox, and thus failed to process.
 
     GET /v2/accounts/{ACCOUNT\_ID}/faxes/smtplog
 
@@ -539,9 +512,7 @@ Fetch a specific log related to email
 Remove a fax from the outbox folder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This API allows you to delete an old fax message. For privacy reasons,
-this may be useful if you wish to remove all evidence of a previously
-sent outbound fax.
+This API allows you to delete an old fax message. For privacy reasons, this may be useful if you wish to remove all evidence of a previously sent outbound fax.
 
     DELETE /v2/accounts/{ACCOUNT\_ID}/faxes/outbox/{FAX\_ID}
 
@@ -554,10 +525,7 @@ sent outbound fax.
 Remove the fax payload
 ^^^^^^^^^^^^^^^^^^^^^^
 
-In some cases, you may wish to remove the document from a fax (usually
-for privacy reasons) but keep evidence that the fax transmission
-occurred. This will remove attachments but not the metadata from a sent
-fax.
+In some cases, you may wish to remove the document from a fax (usually for privacy reasons) but keep evidence that the fax transmission occurred. This will remove attachments but not the metadata from a sent fax.
 
     DELETE /v2/accounts/{ACCOUNT\_ID}/faxes/outbox/{FAX\_ID}/attachment
 
@@ -586,8 +554,7 @@ Retrieve a list of faxes that have previously been received.
 Fetch a fax from the inbox folder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Retrieve all metadata about a particular fax for which you have the fax
-ID.
+Retrieve all metadata about a particular fax for which you have the fax ID.
 
     GET /v2/accounts/{ACCOUNT\_ID}/faxes/inbox/{FAX\_ID}
 
@@ -600,8 +567,7 @@ ID.
 Fetch the fax payload
 ^^^^^^^^^^^^^^^^^^^^^
 
-Retrieve the fax document / attachments for a particular inbound fax for
-which you have the fax ID.
+Retrieve the fax document / attachments for a particular inbound fax for which you have the fax ID.
 
     GET /v2/accounts/{ACCOUNT\_ID}/faxes/inbox/{FAX\_ID}/attachment
 
@@ -614,8 +580,7 @@ which you have the fax ID.
 Remove a fax from the inbox folder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Delete an old fax message. For privacy reasons, this may be useful if
-you wish to remove all evidence of a previously received inbound fax.
+Delete an old fax message. For privacy reasons, this may be useful if you wish to remove all evidence of a previously received inbound fax.
 
     DELETE /v2/accounts/{ACCOUNT\_ID}/faxes/inbox/{FAX\_ID}
 
@@ -628,10 +593,7 @@ you wish to remove all evidence of a previously received inbound fax.
 Remove the fax payload
 ^^^^^^^^^^^^^^^^^^^^^^
 
-In some cases, you may wish to remove the document from a fax (usually
-for privacy reasons) but keep evidence that the fax receipt occurred.
-This will remove attachments but not the metadata from a received fax.
-Useful after you've done post-processing on a fax externally.
+In some cases, you may wish to remove the document from a fax (usually for privacy reasons) but keep evidence that the fax receipt occurred. This will remove attachments but not the metadata from a received fax. Useful after you've done post-processing on a fax externally.
 
     DELETE /v2/accounts/{ACCOUNT\_ID}/faxes/inbox/{FAX\_ID}/attachment
 
@@ -650,10 +612,7 @@ Receiving Inbound Faxes
 Fetch
 ^^^^^
 
-Retrieve a list of faxes that are currently being received or attempted
-to be received. NOTE: THIS FUNCTION DOES NOT WORK YET AS OF THE WRITING
-OF THIS DOCUMENT. We'll update this doc once this function is complete.
-Ticket #
+Retrieve a list of faxes that are currently being received or attempted to be received. NOTE: THIS FUNCTION DOES NOT WORK YET AS OF THE WRITING OF THIS DOCUMENT. We'll update this doc once this function is complete. Ticket #
 
     GET /v2/accounts/{ACCOUNT\_ID}/faxes/incoming
 

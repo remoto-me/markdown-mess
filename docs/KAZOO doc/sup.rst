@@ -1,21 +1,17 @@
-The SUP API is meant to mirror command-line interactions with the SUP
-tool. It will only run on the local API server.
+The SUP API is meant to mirror command-line interactions with the SUP tool. It will only run on the local API server.
 
 You must be ``super_duper_admin`` to access the SUP endpoint.
 
 Activation
 ^^^^^^^^^^
 
-To update the running Crossbar system with this endpoint, issue the
-following sup command:
+To update the running Crossbar system with this endpoint, issue the following sup command:
 
 ::
 
     sup crossbar_maintenance start_module cb_sup
 
-If you want this endpoint to load by default, modify the crossbar doc in
-the ``system_config`` database, and add ``cb_sup`` to the
-``autoload_modules`` list.
+If you want this endpoint to load by default, modify the crossbar doc in the ``system_config`` database, and add ``cb_sup`` to the ``autoload_modules`` list.
 
 URL mapping
 ^^^^^^^^^^^

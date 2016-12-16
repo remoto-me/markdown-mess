@@ -54,23 +54,16 @@ Get allotments configuration for a given account
 Explanаtion
            
 
-Each object have name (``outbound_national``) which build from direction
-(inbound or outbound) and classificator from number\_manager
-configuration.
+Each object have name (``outbound_national``) which build from direction (inbound or outbound) and classificator from number\_manager configuration.
 
 Properties:
 
 -  ``amount``: time in seconds. which can be consumed
--  ``cycle``: when we reset consumed allotments counter, must be one of
-   ``minutely``, ``hourly``, ``daily``, ``weekly``, ``monthly``.
--  ``increment``: step (in seconds) of incrementing counter, minimum 1
-   second
+-  ``cycle``: when we reset consumed allotments counter, must be one of ``minutely``, ``hourly``, ``daily``, ``weekly``, ``monthly``.
+-  ``increment``: step (in seconds) of incrementing counter, minimum 1 second
 -  ``minimum``: minimum ammount added to counter
--  ``no_consume_time``: if call less or equal of this time (in seconds),
-   then no allotment consumed.
--  ``group_consume``: other allotments which will be summed, when
-   calcualting rest of allotments time on authorization. See examples
-   below.
+-  ``no_consume_time``: if call less or equal of this time (in seconds), then no allotment consumed.
+-  ``group_consume``: other allotments which will be summed, when calcualting rest of allotments time on authorization. See examples below.
 
 Examples
         
@@ -86,9 +79,7 @@ Examples
                "no_consume_time": 5
            }
 
-Call consumed time rounded before store it to DB. Call with duration 40
-seconds will be count as 60 seconds. 69 seconds -> 70 75 seconds -> 80 5
-seconds -> 0 6 seconds -> 60
+Call consumed time rounded before store it to DB. Call with duration 40 seconds will be count as 60 seconds. 69 seconds -> 70 75 seconds -> 80 5 seconds -> 0 6 seconds -> 60
 
 "group\_consume"
                 
@@ -108,9 +99,7 @@ seconds -> 0 6 seconds -> 60
                ]
            }
 
-Here we have 2 classifiers which share same counter. If Class1 already
-counsmed 400 seconds and Class2 consumed 150 seconds, next call with
-classifier Class2 (or Class1) will have 50 free seconds.
+Here we have 2 classifiers which share same counter. If Class1 already counsmed 400 seconds and Class2 consumed 150 seconds, next call with classifier Class2 (or Class1) will have 50 free seconds.
 
 Little more complex example:
 
@@ -136,13 +125,9 @@ Little more complex example:
                ]
            }
 
-So if we already have counsumed calls: Class1 - 300 Class2 - 60 Class3 -
-180
+So if we already have counsumed calls: Class1 - 300 Class2 - 60 Class3 - 180
 
-As result next call wil have this free seconds: Class1 - 60 (300 Class1
-+ 60 Class2 + 180 Class3 = 540, 600-540 = 60) Class2 - 0 (60 Class2 +
-300 Class1 = 360, 360 > 120) Class3 - 60 (180 Class3 + 60 Class2 = 240,
-300-240 = 60)
+As result next call wil have this free seconds: Class1 - 60 (300 Class1 + 60 Class2 + 180 Class3 = 540, 600-540 = 60) Class2 - 0 (60 Class2 + 300 Class1 = 360, 360 > 120) Class3 - 60 (180 Class3 + 60 Class2 = 240, 300-240 = 60)
 
 Update allotments configuration for a given account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

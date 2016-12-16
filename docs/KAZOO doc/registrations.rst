@@ -4,8 +4,7 @@ Registrations
 About Registrations
 ^^^^^^^^^^^^^^^^^^^
 
-The Registrations API provides an easy way to see and manage current
-registrations.
+The Registrations API provides an easy way to see and manage current registrations.
 
 Schema
 ^^^^^^

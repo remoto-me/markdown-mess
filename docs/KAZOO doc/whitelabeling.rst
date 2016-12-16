@@ -3,18 +3,12 @@ Domains
 
     GET /v2/accounts/{ACCOUNT\_ID}/whitelabel/domains
 
-When you white label Kazoo's services, DNS settings are needed to make
-sure your hostname maps appropriate for the various DNS entries (CNAM,
-A, NAPTR, etc). If the system admin has configured their settings on the
-backend, you can query Crossbar to show you what your settings should
-map to.
+When you white label Kazoo's services, DNS settings are needed to make sure your hostname maps appropriate for the various DNS entries (CNAM, A, NAPTR, etc). If the system admin has configured their settings on the backend, you can query Crossbar to show you what your settings should map to.
 
 You have two options on the request for what domain to use:
 
-1. If you've already configured your whitelabel domain for the account,
-   the API will use that value.
-2. If you specify ``domain=some.realm.com`` on the request,
-   ``some.realm.com`` will be used instead.
+1. If you've already configured your whitelabel domain for the account, the API will use that value.
+2. If you specify ``domain=some.realm.com`` on the request, ``some.realm.com`` will be used instead.
 
 .. code:: shell
 
@@ -31,8 +25,7 @@ OR
         -d '{"data": {"domain": "some.realm.com"}}' \
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/whitelabel/domains
 
-Assuming your whitelabel domain is "mydomain.com" you should receive a
-payload similar to:
+Assuming your whitelabel domain is "mydomain.com" you should receive a payload similar to:
 
 .. code:: json
 
@@ -114,16 +107,14 @@ payload similar to:
         "status": "success"
     }
 
-Here you can see which DNS records are supported and where they should
-point to access the Kazoo cluster.
+Here you can see which DNS records are supported and where they should point to access the Kazoo cluster.
 
 Testing your domains
 ^^^^^^^^^^^^^^^^^^^^
 
     POST /v2/accounts/{ACCOUNT\_ID}/whitelabel/domains
 
-Kazoo will attempt to validate your whitelabel settings if you send it a
-POST to do so:
+Kazoo will attempt to validate your whitelabel settings if you send it a POST to do so:
 
 .. code:: shell
 
@@ -131,9 +122,7 @@ POST to do so:
         -H "X-Auth-Token: {AUTH_TOKEN}" \
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/whitelabel/domains
 
-Similar to the GET, you can include a ``domain=`` parameter in the
-request to test your domains before you create the whitelabel document.
-A sample response is below:
+Similar to the GET, you can include a ``domain=`` parameter in the request to test your domains before you create the whitelabel document. A sample response is below:
 
 .. code:: json
 
@@ -218,16 +207,12 @@ A sample response is below:
          "status": "success"
     }
 
-You should be able to compare your hosts in each DNS type against the
-expected values configured by the system admin and adjust your DNS
-settins as appropriate.
+You should be able to compare your hosts in each DNS type against the expected values configured by the system admin and adjust your DNS settins as appropriate.
 
 Configuring the Domains (System Administrators only)
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-System administrators can set/update the domains object that is used
-when resellers whitelabel the service. The generic format of the JSON
-object is:
+System administrators can set/update the domains object that is used when resellers whitelabel the service. The generic format of the JSON object is:
 
 .. code:: json
 
@@ -241,21 +226,10 @@ object is:
          }
         }
 
--  ``{DNS_RECORD_TYPE}``: In all uppercase, the DNS record type. "CNAM",
-   "A", "SRV", "MX", etc, that you have defined.
--  ``{WHITELABEL_ABLE_DOMAIN}``: The template for what the hostname will
-   look like when whitelabeled. The only template parameter is
-   ``{{domain}}``, which will be replaced by the whitelabel domain of
-   the reseller.
--  ``mapping``: This is a list of records the reseller should use when
-   configuring their DNS entries for this DNS record type. It could be a
-   list of IP addresses for CNAM or A, or listings of NAPTR/SRV records.
-   Again, the mappings can use the ``{{domain}}`` placeholder for the
-   whitelabeled domain.
--  ``{KAZOO_ZONE}``: what zone this host is located in. If using
-   dedicated IPs for the reseller, this will help when building the IP
-   addresses usable by the reseller. Currently, however, this is purely
-   informational.
+-  ``{DNS_RECORD_TYPE}``: In all uppercase, the DNS record type. "CNAM", "A", "SRV", "MX", etc, that you have defined.
+-  ``{WHITELABEL_ABLE_DOMAIN}``: The template for what the hostname will look like when whitelabeled. The only template parameter is ``{{domain}}``, which will be replaced by the whitelabel domain of the reseller.
+-  ``mapping``: This is a list of records the reseller should use when configuring their DNS entries for this DNS record type. It could be a list of IP addresses for CNAM or A, or listings of NAPTR/SRV records. Again, the mappings can use the ``{{domain}}`` placeholder for the whitelabeled domain.
+-  ``{KAZOO_ZONE}``: what zone this host is located in. If using dedicated IPs for the reseller, this will help when building the IP addresses usable by the reseller. Currently, however, this is purely informational.
 
 To set the system domains object, the API is:
 
@@ -268,10 +242,7 @@ To set the system domains object, the API is:
         -d '{"data": {DOMAINS_OBJECT}}' \
         http://{SERVER}:8000/v2/whitelabel/domains
 
-Where ``{DOMAINS_OBJECT}`` is the JSON. If you look at the `default
-domains
-fixture <https://github.com/2600hz/kazoo/branch/master/core/kazoo_documents/priv/fixtures/domains.json>`__
-for a good base JSON object to modify to your needs.
+Where ``{DOMAINS_OBJECT}`` is the JSON. If you look at the `default domains fixture <https://github.com/2600hz/kazoo/branch/master/core/kazoo_documents/priv/fixtures/domains.json>`__ for a good base JSON object to modify to your needs.
 
 If you receive a 400 when POSTing with a response like:
 
@@ -292,5 +263,4 @@ If you receive a 400 when POSTing with a response like:
          "status": "error"
         }
 
-You will need to run ``sup kapps_maintenance refresh system_schemas`` to
-ensure the ``domains`` schema is available.
+You will need to run ``sup kapps_maintenance refresh system_schemas`` to ensure the ``domains`` schema is available.

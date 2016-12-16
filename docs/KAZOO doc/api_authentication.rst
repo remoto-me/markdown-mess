@@ -1,20 +1,15 @@
 Generating an auth token from your API token
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use your account's API token to instruct Crossbar to create an
-authentication token to be used on subsequent requests requiring
-authentication.
+Use your account's API token to instruct Crossbar to create an authentication token to be used on subsequent requests requiring authentication.
 
 The Authentication Process
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Get your API key for your account:
 
-   -  This value can be obtained by users on an account via the accounts
-      api endpoint ``api_key``.
-   -  This value can also be accessed by system administrators directly
-      from the database by using curl to request the account doc from
-      Couch:
+   -  This value can be obtained by users on an account via the accounts api endpoint ``api_key``.
+   -  This value can also be accessed by system administrators directly from the database by using curl to request the account doc from Couch:
 
       ::
 
@@ -46,10 +41,8 @@ The Authentication Process
 The Response
 ''''''''''''
 
--  {AUTH\_TOKEN}: this is your authentication token to include in future
-   requests
+-  {AUTH\_TOKEN}: this is your authentication token to include in future requests
 -  {ACCOUNT\_ID}: your account's ID, useful for constructing URIs
--  {OWNER\_ID}: The user's ID of the owner of the credentials used to
-   generate this token
+-  {OWNER\_ID}: The user's ID of the owner of the credentials used to generate this token
 -  {RESELLER\_ID}: The account's reseller account ID, if any
 -  {REQUEST\_ID}: Useful for debugging requests on your installation

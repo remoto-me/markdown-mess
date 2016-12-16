@@ -172,8 +172,7 @@ A US-1 row might look like:
 
 ``1, "US-1", "US default rate", 0.01``
 
-This API will return an HTTP 202 and process the CSV in a background
-process.
+This API will return an HTTP 202 and process the CSV in a background process.
 
 .. code:: shell
 
@@ -198,8 +197,7 @@ Create a new rate
 
     PUT /v2/rates
 
-The ``routes`` key will be populated for you, using the ``prefix``,
-unless you specify the ``routes`` list here.
+The ``routes`` key will be populated for you, using the ``prefix``, unless you specify the ``routes`` list here.
 
 .. code:: shell
 
@@ -388,8 +386,7 @@ This API requires that the backend app ``hotornot`` is running.
 
     GET /v2/rates/number/{PHONE\_NUMBER}
 
-The ``{PHONE_NUMBER}`` must be reconcilable (see your
-``reconcile_regex`` for that criteria).
+The ``{PHONE_NUMBER}`` must be reconcilable (see your ``reconcile_regex`` for that criteria).
 
 .. code:: shell
 

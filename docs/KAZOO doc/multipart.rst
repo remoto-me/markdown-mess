@@ -6,8 +6,7 @@ Some APIs support sending a multipart request, such as outgoing faxes.
 Outgoing Faxes
 ^^^^^^^^^^^^^^
 
-With multipart you can create an outgoing fax request and upload the
-document to fax (eg: a pdf file) at the same time.
+With multipart you can create an outgoing fax request and upload the document to fax (eg: a pdf file) at the same time.
 
 Create a JSON file for the outgoing fax options
 '''''''''''''''''''''''''''''''''''''''''''''''

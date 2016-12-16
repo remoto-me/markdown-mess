@@ -21,5 +21,4 @@ Sample cURL Requests
 
     curl -v -basic -user {AUTH_ACCOUNT_ID}:$PASSWORD http://server.com:8000/v2/accounts/{ACCOUNT_ID}/devices
 
-This will still allow a reseller to execute requests against a
-sub-account.
+This will still allow a reseller to execute requests against a sub-account.

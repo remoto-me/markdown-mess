@@ -4,17 +4,12 @@ Channels
 About Channels
 ^^^^^^^^^^^^^^
 
-The Channels API allows queries to find active channels for an account,
-a user, or a device. Given a call-id for a channel, a limited set of
-commands are allowed to be executed against that channel (such as
-hangup, transfer, or play media).
+The Channels API allows queries to find active channels for an account, a user, or a device. Given a call-id for a channel, a limited set of commands are allowed to be executed against that channel (such as hangup, transfer, or play media).
 
 Fetch active channels system wide.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For superduper admin only. Be sure to set
-``system_config``->``crossbar.channels``->``system_wide_channels_list``
-flag to ``true``.
+For superduper admin only. Be sure to set ``system_config``->``crossbar.channels``->``system_wide_channels_list`` flag to ``true``.
 
     GET /v2/channels
 
@@ -213,15 +208,11 @@ currently only ``metaflow`` is supported
 Metaflow
 ^^^^^^^^
 
-Metaflow feature is a ``metaflow`` object which validates with its json
-schema.
+Metaflow feature is a ``metaflow`` object which validates with its json schema.
 
-. reasoning The ``POST`` action required that every metaflow action
-would have to be coded into the module.
+. reasoning The ``POST`` action required that every metaflow action would have to be coded into the module.
 
-. benefits The metaflow feature allows adding new types of metaflows
-without changing the code. It also allows full metaflows and not only
-single actions, ie, the ``children`` node is also processed.
+. benefits The metaflow feature allows adding new types of metaflows without changing the code. It also allows full metaflows and not only single actions, ie, the ``children`` node is also processed.
 
     PUT /v2/accounts/{ACCOUNT\_ID}/channels/{UUID}
 

@@ -41,18 +41,13 @@ Ex:
 Install Master applications
 '''''''''''''''''''''''''''
 
-Assuming you've installed your Monster applications to
-``/path/to/monster-ui/apps``, you can run the following SUP command on
-the {{SERVER}}:
+Assuming you've installed your Monster applications to ``/path/to/monster-ui/apps``, you can run the following SUP command on the {{SERVER}}:
 
 ::
 
     sup crossbar_maintenance init_apps '/path/to/monster-ui/apps' 'http://your.api.{{SERVER}}:8000/v2'
 
-This will load the apps (and let you know which apps it couldn't
-automatically load) into the master account (including icons, if
-present). For any apps that failed to be loaded automatically, you can
-follow the manual instructions below.
+This will load the apps (and let you know which apps it couldn't automatically load) into the master account (including icons, if present). For any apps that failed to be loaded automatically, you can follow the manual instructions below.
 
 If you want to install a single Monster application:
 
@@ -205,8 +200,7 @@ Streams application icon back.
 Fetch App screen shots
 ^^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/apps\_store/{APP\_ID}/screenshot/{APP\_SCREENSHOT\_INDEX}
+    GET /v2/accounts/{ACCOUNT\_ID}/apps\_store/{APP\_ID}/screenshot/{APP\_SCREENSHOT\_INDEX}
 
 .. code:: shell
 

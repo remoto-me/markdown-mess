@@ -1,5 +1,4 @@
-A blacklist is a map of caller id numbers that can be then apply to the
-account to block these callers to call the system.
+A blacklist is a map of caller id numbers that can be then apply to the account to block these callers to call the system.
 
 Structure
 ^^^^^^^^^
@@ -26,8 +25,7 @@ When you upload numbers they will be converted to e164 format.
 Usage
 ^^^^^
 
-Once you created your blacklists using the api you can apply them to the
-account by adding the blacklist ids to the account, like the following:
+Once you created your blacklists using the api you can apply them to the account by adding the blacklist ids to the account, like the following:
 
 .. code:: json
 

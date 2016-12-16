@@ -6,8 +6,7 @@ This endpoint provides carrier accounting records.
 Request
 =======
 
-``GET`` request to ``v2/accounts/{ACCOUNT_ID}/radius_accounts`` with the
-following query params:
+``GET`` request to ``v2/accounts/{ACCOUNT_ID}/radius_accounts`` with the following query params:
 
 -  ``other_party``
 -  ``billing_party``

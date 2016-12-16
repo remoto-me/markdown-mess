@@ -4,8 +4,7 @@ Presence
 About Presence
 ^^^^^^^^^^^^^^
 
-Kazoo tracks presence subscriptions and those states can be
-accessed/manipulated via this API.
+Kazoo tracks presence subscriptions and those states can be accessed/manipulated via this API.
 
 There are three main ways to access presence information:
 
@@ -77,13 +76,11 @@ It is possible to search/list all subscriptions for an account:
 Reset presence state
 ^^^^^^^^^^^^^^^^^^^^
 
-Sometimes folks subscribe for parking slots or other values that are not
-represented in the Kazoo REST API.
+Sometimes folks subscribe for parking slots or other values that are not represented in the Kazoo REST API.
 
     POST /v2/accounts/{ACCOUNT\_ID}/presence/{EXTENSION}
 
-Where ``{EXTENSION}`` could be ``*3101``, ``110011``, or whatever other
-extensions are allowed.
+Where ``{EXTENSION}`` could be ``*3101``, ``110011``, or whatever other extensions are allowed.
 
 .. code:: shell
 
@@ -95,8 +92,7 @@ extensions are allowed.
 Devices
 ^^^^^^^
 
-This API will use the \`presence\_id' of the device, if present;
-otherwise it will use the SIP username of the device.
+This API will use the \`presence\_id' of the device, if present; otherwise it will use the SIP username of the device.
 
 POST to reset presence state
 ''''''''''''''''''''''''''''
@@ -108,8 +104,7 @@ POST to reset presence state
 Users
 ^^^^^
 
-This API will use the ``presence_id`` of the user is applicable;
-otherwise it will reset all the user's devices' states
+This API will use the ``presence_id`` of the user is applicable; otherwise it will reset all the user's devices' states
 
 POST to reset presence state
 ''''''''''''''''''''''''''''

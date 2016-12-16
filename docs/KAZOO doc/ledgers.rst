@@ -73,8 +73,7 @@ Get Ledger values
 
 List ledger values for an account with paging and filtering support
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/ledgers/{LEDGER\_ID}?created\_from=11111111&created\_to=22222222
+    GET /v2/accounts/{ACCOUNT\_ID}/ledgers/{LEDGER\_ID}?created\_from=11111111&created\_to=22222222
 
 .. code:: shell
 
@@ -118,8 +117,7 @@ List ledger values for an account with paging and filtering support
 Get Ledger document
 ^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/ledgers/{LEDGER\_ID}/{LEDGER\_ENTRY\_ID}
+    GET /v2/accounts/{ACCOUNT\_ID}/ledgers/{LEDGER\_ID}/{LEDGER\_ENTRY\_ID}
 
 .. code:: shell
 
@@ -160,11 +158,9 @@ Get Ledger document
 Credit / Debit
 ^^^^^^^^^^^^^^
 
-Credit or Debit a specific ledger. the ``account_id`` for ``AUTH_TOKEN``
-must be reseller of target account.
+Credit or Debit a specific ledger. the ``account_id`` for ``AUTH_TOKEN`` must be reseller of target account.
 
-Parameter "impact\_reseller" (boolean not required) when true will also
-create the document in the reseller
+Parameter "impact\_reseller" (boolean not required) when true will also create the document in the reseller
 
     PUT /v2/accounts/{ACCOUNT\_ID}/ledgers/debit
 

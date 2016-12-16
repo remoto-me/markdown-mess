@@ -1,6 +1,4 @@
-To use system level dial plans add them to this document:
-http://10.8.66.1:5984/\_utils/document.html?system\_config/dialplans The
-format for adding them is:
+To use system level dial plans add them to this document: http://10.8.66.1:5984/\_utils/document.html?system\_config/dialplans The format for adding them is:
 
 ::
 
@@ -13,8 +11,7 @@ format for adding them is:
 
 The regex is the key. Prefix and suffix are optional.
 
-In order to enable an account/user/device to use the system level
-dialplan patch them with this data:
+In order to enable an account/user/device to use the system level dialplan patch them with this data:
 
 ::
 
@@ -24,6 +21,4 @@ dialplan patch them with this data:
         }
     }
 
-Multiple system level dial plans can be added with the "[]". Dial plans
-can also be explicitly added to an account/user/device using the same
-format as the system level.
+Multiple system level dial plans can be added with the "[]". Dial plans can also be explicitly added to an account/user/device using the same format as the system level.

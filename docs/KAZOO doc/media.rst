@@ -4,14 +4,9 @@ Media
 About Media
 ^^^^^^^^^^^
 
-Uploading media for custom music on hold, IVR prompts, or TTS (if a
-proper TTS engine is enabled).
+Uploading media for custom music on hold, IVR prompts, or TTS (if a proper TTS engine is enabled).
 
-Kazoo provides some default system media files for common things like
-voicemail prompts. These are accessible via the media Crossbar endpoint
-as well, if your user has superduper admin privileges. To manipulate
-those resources, simply omit the ``/accounts/{ACCOUNT_ID}`` from the
-URI.
+Kazoo provides some default system media files for common things like voicemail prompts. These are accessible via the media Crossbar endpoint as well, if your user has superduper admin privileges. To manipulate those resources, simply omit the ``/accounts/{ACCOUNT_ID}`` from the URI.
 
 For example, to get a listing of all system media files:
 
@@ -19,14 +14,9 @@ For example, to get a listing of all system media files:
 
     curl -v -X GET -H "X-Auth-Token: {AUTH_TOKEN}" http://server.com:8000/v2/media
 
-You can then get the "id" of the media file and manipulate it in a
-similar fashion as regular account media (including TTS if you have a
-TTS engine like iSpeech configured).
+You can then get the "id" of the media file and manipulate it in a similar fashion as regular account media (including TTS if you have a TTS engine like iSpeech configured).
 
-Part of the schema of media files is a language attribute. It defaults
-to a ``system_config/media`` value for the ``default_language`` key (and
-is "en-us" by default). Properly defined media files can be searched for
-based on language using the basic filters provided by Crossbar:
+Part of the schema of media files is a language attribute. It defaults to a ``system_config/media`` value for the ``default_language`` key (and is "en-us" by default). Properly defined media files can be searched for based on language using the basic filters provided by Crossbar:
 
 ::
 
@@ -34,81 +24,50 @@ based on language using the basic filters provided by Crossbar:
     curl -v -X GET -H "X-Auth-Token: {AUTH_TOKEN}" http://server.com:8000/v2/media?filter_language=en-US
     curl -v -X GET -H "X-Auth-Token: {AUTH_TOKEN}" http://server.com:8000/v2/media?filter_language=fr-FR
 
-The comparison is case-insensitive, but ``en`` and ``en-US`` are treated
-separately. If a media metadata object is missing a language attribute
-(on an older installation when system media was imported with no
-language field, say), use ``key_missing=language`` in the request.
+The comparison is case-insensitive, but ``en`` and ``en-US`` are treated separately. If a media metadata object is missing a language attribute (on an older installation when system media was imported with no language field, say), use ``key_missing=language`` in the request.
 
-Once you've assigned languages, you can use the ```language`` callflow
-action <../../callflow/doc/language.md>`__ to set the language for that
-call.
+Once you've assigned languages, you can use the ```language`` callflow action <../../callflow/doc/language.md>`__ to set the language for that call.
 
-Kazoo can be configured to normalize uploaded media files. This can fix
-things like:
+Kazoo can be configured to normalize uploaded media files. This can fix things like:
 
 -  Normalizing volume
 -  Fix clipping
 -  Standardize formats
 
-By default, if enabled, normalization will convert all media to MP3
-(retaining the original upload as well) using the `*sox*
-utility <http://sox.sourceforge.net/>`__ to accomplish the conversion.
+By default, if enabled, normalization will convert all media to MP3 (retaining the original upload as well) using the `*sox* utility <http://sox.sourceforge.net/>`__ to accomplish the conversion.
 
 Enable Normalization Via SUP:
 
-Enable normalization for this particular server:
-``sup kapps_config set crossbar.media normalize_media true``
+Enable normalization for this particular server: ``sup kapps_config set crossbar.media normalize_media true``
 
-Enable normalization for all servers:
-``sup kapps_config set_default crossbar.media normalize_media true``
+Enable normalization for all servers: ``sup kapps_config set_default crossbar.media normalize_media true``
 
 Enable Normalization Via DB:
 
-1. Open ``system_config/crossbar.media`` document, create or update the
-   key ``normalize_media`` to ``true``.
-2. Flush the kapps\_config cache,
-   ``sup kapps_config flush crossbar.media``, on all servers running
-   Crossbar.
+1. Open ``system_config/crossbar.media`` document, create or update the key ``normalize_media`` to ``true``.
+2. Flush the kapps\_config cache, ``sup kapps_config flush crossbar.media``, on all servers running Crossbar.
 
 Set Target Format Via SUP:
 
-For the server:
-``sup kapps_config set crossbar.media normalization_format ogg``
+For the server: ``sup kapps_config set crossbar.media normalization_format ogg``
 
-For all servers:
-``sup kapps_config set_default crossbar.media normalization_format ogg``
+For all servers: ``sup kapps_config set_default crossbar.media normalization_format ogg``
 
 Set Target Format Via DB:
 
-In the ``system_config/crossbar.media`` document, create or update the
-key ``normalization_format`` to your desired format (``mp3``, ``wav``,
-etc). Flush the kapps\_config cache on all servers running Crossbar. All
-new uploads will be normalized (if possible) to the new format.
+In the ``system_config/crossbar.media`` document, create or update the key ``normalization_format`` to your desired format (``mp3``, ``wav``, etc). Flush the kapps\_config cache on all servers running Crossbar. All new uploads will be normalized (if possible) to the new format.
 
 Normalization parameters:
 
-The default *sox* command is
-``sox -t <input_format> - -r 8000 -t <output_format> -`` but this is
-configurable via the ``system_config/media`` document (or similar SUP
-command).
+The default *sox* command is ``sox -t <input_format> - -r 8000 -t <output_format> -`` but this is configurable via the ``system_config/media`` document (or similar SUP command).
 
-You can fine-tune the source and destination arguments using the
-``normalize_source_args`` and ``normalize_destination_args`` keys
-respectively. By default, the source args are "" and the destination
-args are "-r 8000" (as can be seen from the default sox command above.
+You can fine-tune the source and destination arguments using the ``normalize_source_args`` and ``normalize_destination_args`` keys respectively. By default, the source args are "" and the destination args are "-r 8000" (as can be seen from the default sox command above.
 
-The normalizer code uses stdin to send the binary data to sox and reads
-from stdout to get the normalized binary data back (the " - " (there are
-2) in command above).
+The normalizer code uses stdin to send the binary data to sox and reads from stdout to get the normalized binary data back (the " - " (there are 2) in command above).
 
-You can also set the specific path for ``sox`` in the
-``normalize_executable`` key, in case you've installed it to a
-non-standard path.
+You can also set the specific path for ``sox`` in the ``normalize_executable`` key, in case you've installed it to a non-standard path.
 
-Be sure to install sox with mp3 support! Conversion will not happen
-(assuming you're targeting mp3) if sox can't write the mp3. You can
-check the media meta document for the key ``normalization_error`` if sox
-failed for some reason.
+Be sure to install sox with mp3 support! Conversion will not happen (assuming you're targeting mp3) if sox can't write the mp3. You can check the media meta document for the key ``normalization_error`` if sox failed for some reason.
 
 Schema
 ^^^^^^
@@ -563,11 +522,9 @@ List languages available
 
     GET /v2/accounts/{ACCOUNT\_ID}/media/languages
 
-This request will return a list of languages found, as well as the
-counts of how many media files have that language defined:
+This request will return a list of languages found, as well as the counts of how many media files have that language defined:
 
-Note, the "missing" key indicates how many media files have no
-associated language.
+Note, the "missing" key indicates how many media files have no associated language.
 
 .. code:: shell
 
@@ -619,16 +576,14 @@ Add the media binary file to the media meta data
         --data-binary @/path/to/file.wav \
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/media/{MEDIA_ID}/raw
 
-Only one of the above; any subsequent POSTs will overwrite the existing
-binary data.
+Only one of the above; any subsequent POSTs will overwrite the existing binary data.
 
 List all translations of a given prompt
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     GET /v2/accounts/{ACCOUNT\_ID}/media/prompts/{PROMPT\_ID}
 
-You can use that list to fetch the specific media files associated with
-that prompt.
+You can use that list to fetch the specific media files associated with that prompt.
 
 .. code:: shell
 

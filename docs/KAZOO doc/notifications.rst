@@ -35,12 +35,9 @@ Example structure:
         }
     }
 
-In addition to the JSON data, templates in various formats can be
-uploaded (such as from a WYSIWYG tool). Currently supported are
-plaintext and HTML documents.
+In addition to the JSON data, templates in various formats can be uploaded (such as from a WYSIWYG tool). Currently supported are plaintext and HTML documents.
 
-The ``macros`` object is a per-template, system-defined set of macros
-you can use in your templates. You cannot configure this via the API.
+The ``macros`` object is a per-template, system-defined set of macros you can use in your templates. You cannot configure this via the API.
 
 Schema
 ^^^^^^
@@ -97,14 +94,12 @@ Using Crossbar to modify notifications is very simple:
 -  POST - Updates a notification, or adds/updates a template.
 -  DELETE - Removes a notification.
 
-To modify an account notification, the requester must be a reseller of
-that account or the master account.
+To modify an account notification, the requester must be a reseller of that account or the master account.
 
 Account Temporal Rules Sets URI
 '''''''''''''''''''''''''''''''
 
--  ``/v2/accounts/{ACCOUNT_ID}/notifications``: modify an account's
-   template(s)
+-  ``/v2/accounts/{ACCOUNT_ID}/notifications``: modify an account's template(s)
 -  ``/v2/notifications``: Modify the system default templates
 
 Fetch available notification templates from the system
@@ -112,8 +107,7 @@ Fetch available notification templates from the system
 
     GET /v2/notifications
 
-This is the first request to make to see what templates exist on the
-system to override
+This is the first request to make to see what templates exist on the system to override
 
 .. code:: shell
 
@@ -148,8 +142,7 @@ system to override
             "status": "success"
     }
 
-To see what notification templates an account overrides, include the
-account ID in the URI:
+To see what notification templates an account overrides, include the account ID in the URI:
 
     GET /v2/accounts/{ACCOUNT\_ID}/notifications
 
@@ -187,16 +180,12 @@ account ID in the URI:
         "status": "success"
     }
 
-The key ``account_overridden`` will exist on any templates that are
-account-specific.
+The key ``account_overridden`` will exist on any templates that are account-specific.
 
 Fetch a notification's configuration
                                     
 
-Using the ID from the system listing above, get the template JSON. This
-document allows you to set some "static" properties (things not derived
-from the event causing the notification, e.g. call data, system alert,
-etc).
+Using the ID from the system listing above, get the template JSON. This document allows you to set some "static" properties (things not derived from the event causing the notification, e.g. call data, system alert, etc).
 
 ::
 
@@ -220,16 +209,12 @@ etc).
         "status": "success"
     }
 
-Performing a GET with an account ID will return the notification object,
-again with the ``account_overridden`` flag added if it is
-account-specific; lack of the key indicates it is the system default
-notification.
+Performing a GET with an account ID will return the notification object, again with the ``account_overridden`` flag added if it is account-specific; lack of the key indicates it is the system default notification.
 
 Create a notification template
                               
 
-Now that you've fetched the system default template, modify and PUT it
-back to the account.
+Now that you've fetched the system default template, modify and PUT it back to the account.
 
     PUT /v2/accounts/{ACCOUNT\_ID}/notifications
 
@@ -285,16 +270,12 @@ back to the account.
         "status": "success"
     }
 
-This request will fail if ``id`` does not already exist in the system
-defaults. To create a new system notification template, a superduper
-admin can use the above PUT, but to ``/v2/notifications`` instead of a
-specific account.
+This request will fail if ``id`` does not already exist in the system defaults. To create a new system notification template, a superduper admin can use the above PUT, but to ``/v2/notifications`` instead of a specific account.
 
 Fetch a specific notification
                              
 
-Now that you've created an account-specific notification, you can fetch
-it to feed into a WYSIWYG editor or for other purposes:
+Now that you've created an account-specific notification, you can fetch it to feed into a WYSIWYG editor or for other purposes:
 
     GET /v2/accounts/{ACCOUNT\_ID}/notifications/{NOTIFICATION\_ID}
 
@@ -374,18 +355,14 @@ Omit the ``/accounts/{ACCOUNT_ID}`` to remove the system default.
 Template Formats
 ''''''''''''''''
 
-Creating the configuration documents is all well and good, but it is
-necessary to be able to attach the templates in their various forms as
-well. Currently supported formats are ``text/html`` and ``text/plain``.
+Creating the configuration documents is all well and good, but it is necessary to be able to attach the templates in their various forms as well. Currently supported formats are ``text/html`` and ``text/plain``.
 
 Get notification template:
                           
 
     GET /v2/accounts/{ACCOUNT\_ID}/notifications/{NOTIFICATION\_ID}
 
-When you GET a notification config (``Accept`` of ``application/json``),
-get a ``templates`` list of ``Content-Type`` atttributes. Use those to
-fetch a specific template by setting the ``Accept`` header:
+When you GET a notification config (``Accept`` of ``application/json``), get a ``templates`` list of ``Content-Type`` atttributes. Use those to fetch a specific template by setting the ``Accept`` header:
 
 .. code:: shell
 
@@ -401,15 +378,9 @@ fetch a specific template by setting the ``Accept`` header:
         -H 'Accept: text/plain' \
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/notifications/{NOTIFICATION_ID}
 
-Note that the only difference is the ``Accept`` attribute. This will
-determine which attachment is returned in the payload. If you specify a
-non-existent Accept MIME type, expect to receive a
-``406 Not Acceptable`` error.
+Note that the only difference is the ``Accept`` attribute. This will determine which attachment is returned in the payload. If you specify a non-existent Accept MIME type, expect to receive a ``406 Not Acceptable`` error.
 
-For clients that do not support setting the ``Accept`` header, a
-querystring parameter can be included (eg
-``http://server:8000/v2/accounts/{ACCOUNT_ID}/notifications/{NOTIFICATION_ID}?accept=text/html``
-to get the HTML template.
+For clients that do not support setting the ``Accept`` header, a querystring parameter can be included (eg ``http://server:8000/v2/accounts/{ACCOUNT_ID}/notifications/{NOTIFICATION_ID}?accept=text/html`` to get the HTML template.
 
 Update notification template:
                              
@@ -437,11 +408,9 @@ Update notification template:
 Preview a new template
                       
 
-It can be helpful to preview the resulting email when modifying
-templates, but before actually saving the template.
+It can be helpful to preview the resulting email when modifying templates, but before actually saving the template.
 
-    POST
-    /v2/accounts/{ACCOUNT\_ID}/notifications/{NOTIFICATION\_ID}/preview
+    POST /v2/accounts/{ACCOUNT\_ID}/notifications/{NOTIFICATION\_ID}/preview
 
 .. code:: shell
 
@@ -464,16 +433,9 @@ templates, but before actually saving the template.
 Operations considerations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In versions Kazoo prior to 3.19, notification templates were managed and
-processed by the ``notify`` app.
+In versions Kazoo prior to 3.19, notification templates were managed and processed by the ``notify`` app.
 
-All accounts will continue to be processed by the ``notify`` app until
-the Crossbar notification APIs are accessed for the first time (for
-instance, when using the Branding App in Monster). Once a client has
-accessed the APIs, a flag is set on the account telling the ``notify``
-app to ignore processing and instructs the ``teletype`` app to process
-it instead. This allows admins to run both ``notify`` and ``teletyple``
-concurrently without sending multiple copies of each notification.
+All accounts will continue to be processed by the ``notify`` app until the Crossbar notification APIs are accessed for the first time (for instance, when using the Branding App in Monster). Once a client has accessed the APIs, a flag is set on the account telling the ``notify`` app to ignore processing and instructs the ``teletype`` app to process it instead. This allows admins to run both ``notify`` and ``teletyple`` concurrently without sending multiple copies of each notification.
 
 Get the notification(s) SMTP log
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -531,8 +493,7 @@ Customer update
 
 Send a message to all reseller's children or to a particular account.
 
-    POST
-    /v2/accounts/{ACCOUNT\_ID}/notifications/customer\_update/message
+    POST /v2/accounts/{ACCOUNT\_ID}/notifications/customer\_update/message
 
 Send message to all reseller's accounts:
 
@@ -570,8 +531,7 @@ Send message to a particular acount:
         -d '{"data": {"recipient_id": "33ca3929ed585e0e423eb39e4ffe1452"}}' \
         http://{SERVER}:8000/v2/accounts/{SENDER(RESELLER)_ACCOUNT_ID}/notifications/customer_update/message
 
-You can send a message to all users, admins only or a particular user
-within an account. Just add a ``user_type`` field to your payload:
+You can send a message to all users, admins only or a particular user within an account. Just add a ``user_type`` field to your payload:
 
 All users:
 
@@ -597,8 +557,7 @@ Admin privileged users only. Default. Could be omitted:
         "data": {"user_type": "admins_only"}
     }
 
-You can send a message with changed subject, html and plain text
-templates by providing full notification document payload:
+You can send a message with changed subject, html and plain text templates by providing full notification document payload:
 
 .. code:: json
 

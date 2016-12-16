@@ -4,19 +4,14 @@ Ips
 About Ips
 ^^^^^^^^^
 
-The IPs API allows users to manage the IP addresses assigned to their
-accounts. In the future they will be able to fully manage dedicated IPs.
+The IPs API allows users to manage the IP addresses assigned to their accounts. In the future they will be able to fully manage dedicated IPs.
 
-The common use case is adding proxy IPs that must be used when routing
-calls to upstream resources. If the upstream requires traffic to come
-from a specific set of IPs, adding those IPs here will cause outbound
-calls to carriers to be routed through the IP(s) supplied.
+The common use case is adding proxy IPs that must be used when routing calls to upstream resources. If the upstream requires traffic to come from a specific set of IPs, adding those IPs here will cause outbound calls to carriers to be routed through the IP(s) supplied.
 
 Adding IPs to the system
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-IPs need to be configured by the system admin using the
-``sup kazoo_ips_maintenance add {IP} {ZONE} {HOST}`` command:
+IPs need to be configured by the system admin using the ``sup kazoo_ips_maintenance add {IP} {ZONE} {HOST}`` command:
 
 .. code:: shell
 
@@ -33,9 +28,7 @@ IPs need to be configured by the system admin using the
 | ``{HOST}``   | The Hostname associated with the IP     | ``string``   |           | ``true``   |
 +--------------+-----------------------------------------+--------------+-----------+------------+
 
-Once you've added IPs to the system, you can assign those to different
-customer accounts to proxy their calls through using the below Crossbar
-APIs.
+Once you've added IPs to the system, you can assign those to different customer accounts to proxy their calls through using the below Crossbar APIs.
 
 Crossbar Schema
 ^^^^^^^^^^^^^^^
@@ -53,8 +46,7 @@ Fetch a list of IPs available to the account
 
     GET /v2/accounts/{ACCOUNT\_ID}/ips
 
-This can take an optional query string parameter ``zone`` to filter the
-results.
+This can take an optional query string parameter ``zone`` to filter the results.
 
 .. code:: shell
 

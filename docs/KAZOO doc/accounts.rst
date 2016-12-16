@@ -4,23 +4,14 @@ Accounts
 About Accounts
 ^^^^^^^^^^^^^^
 
-Accounts are the container for most things in Kazoo. They typically
-represent an office, business, family, etc. Kazoo arranges accounts into
-a tree structure, where parent accounts can access their sub accounts
-but not their ancestor accounts.
+Accounts are the container for most things in Kazoo. They typically represent an office, business, family, etc. Kazoo arranges accounts into a tree structure, where parent accounts can access their sub accounts but not their ancestor accounts.
 
 About the Account Tree
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Since accounts can be the child of 0 or more parent accounts, it is
-necessary to track each account's lineage. This is tracked in the
-account document (\_id = ID of the account) in the ``pvt_tree`` array.
-The order of the list is from most-ancestral to parent.
+Since accounts can be the child of 0 or more parent accounts, it is necessary to track each account's lineage. This is tracked in the account document (\_id = ID of the account) in the ``pvt_tree`` array. The order of the list is from most-ancestral to parent.
 
-So given ``"pvt_tree":["1", "2", "3"]``, it can be determined that "3"
-is the parent account, "2" the grand-parent, and "1" is the
-great-grandparent. ``"pvt_tree":[]`` indicates the master (or
-Highlander) account; there should only be one!
+So given ``"pvt_tree":["1", "2", "3"]``, it can be determined that "3" is the parent account, "2" the grand-parent, and "1" is the great-grandparent. ``"pvt_tree":[]`` indicates the master (or Highlander) account; there should only be one!
 
 Schema
 ^^^^^^
@@ -190,9 +181,7 @@ Schema
 Create a new child account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Puts the created account under the account of the owner of the
-``{AUTH_TOKEN}``. This is a shortcut for
-``PUT /v2/accounts/{AUTH_ACCOUNT_ID}``
+Puts the created account under the account of the owner of the ``{AUTH_TOKEN}``. This is a shortcut for ``PUT /v2/accounts/{AUTH_ACCOUNT_ID}``
 
     PUT /v2/accounts
 
@@ -499,11 +488,7 @@ Fetch an account's ancestor tree
 Fetch the account's API key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The API key is used by the ``api_auth`` API to obtain an ``auth_token``.
-This is intended for use by applications talking to kazoo and provides a
-mechanism for authentication that does not require storing a username
-and password in the application. The API key can be obtained via the
-accounts API's endpoint ``api_key``.
+The API key is used by the ``api_auth`` API to obtain an ``auth_token``. This is intended for use by applications talking to kazoo and provides a mechanism for authentication that does not require storing a username and password in the application. The API key can be obtained via the accounts API's endpoint ``api_key``.
 
     GET /v2/accounts/{ACCOUNT\_ID}/api\_key
 
@@ -528,12 +513,7 @@ accounts API's endpoint ``api_key``.
 Fetch sibling accounts
 ^^^^^^^^^^^^^^^^^^^^^^
 
-By default a user account under an admin/reseller account can view all
-the other accounts under that reseller. If you would like current
-account only will be able to query its child accounts' sibling and not
-other accounts then set ``allow_sibling_listing`` in
-``system_config/crossbar.accounts`` to ``false``. Admin account can
-unrestrictedly list siblings.
+By default a user account under an admin/reseller account can view all the other accounts under that reseller. If you would like current account only will be able to query its child accounts' sibling and not other accounts then set ``allow_sibling_listing`` in ``system_config/crossbar.accounts`` to ``false``. Admin account can unrestrictedly list siblings.
 
     GET /v2/accounts/{ACCOUNT\_ID}/siblings
 
@@ -657,12 +637,9 @@ Requires superduper admin auth token
 Move an account
 ^^^^^^^^^^^^^^^
 
-An account can only be moved by a "superduper\_admin" or if enabled by
-anyone above the desired account.
+An account can only be moved by a "superduper\_admin" or if enabled by anyone above the desired account.
 
-You can enable that feature by editing the document
-``crossbar.accounts`` in your ``system_config`` database and set the
-value to ``tree``.
+You can enable that feature by editing the document ``crossbar.accounts`` in your ``system_config`` database and set the value to ``tree``.
 
 +------------------+-------------------------------------+------------------------------+
 | Key              | Value                               | Description                  |

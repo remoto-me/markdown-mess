@@ -9,8 +9,7 @@
 Business Partners
 =================
 
-Crossbar endpoint to deal with anything related to a Camel business
-partner. Related information is stored in the extended\_props database.
+Crossbar endpoint to deal with anything related to a Camel business partner. Related information is stored in the extended\_props database.
 
 Billing Contacts
 ----------------
@@ -53,9 +52,7 @@ Response
 POST - Update a resource:
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Update all the billing contacts on the account. Billing contacts without
-an ``user_id`` attribute will be created, with a ``user_id`` field will
-be modified, and those left out of the query will be removed.
+Update all the billing contacts on the account. Billing contacts without an ``user_id`` attribute will be created, with a ``user_id`` field will be modified, and those left out of the query will be removed.
 
 Request
 ^^^^^^^

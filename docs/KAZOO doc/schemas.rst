@@ -4,13 +4,9 @@ Schemas
 About Schemas
 ^^^^^^^^^^^^^
 
-Kazoo uses `JSON Schemas <http://json-schema.org/>`__ to validate
-incoming data from clients.
+Kazoo uses `JSON Schemas <http://json-schema.org/>`__ to validate incoming data from clients.
 
-Any fields that aren't defined in the JSON schema will be stored,
-unmodified, along side the validated fields (assuming all is well). This
-excludes Kazoo-managed private fields (top-level keys prefixed with "*"
-and "pvt*").
+Any fields that aren't defined in the JSON schema will be stored, unmodified, along side the validated fields (assuming all is well). This excludes Kazoo-managed private fields (top-level keys prefixed with "*" and "pvt*").
 
 Schema
 ^^^^^^
@@ -172,8 +168,7 @@ Fetch the schema definitions
 Perform a validation
 ^^^^^^^^^^^^^^^^^^^^
 
-Test your request data against the validation schema (without performing
-a database operation).
+Test your request data against the validation schema (without performing a database operation).
 
     PUT /v2/schemas/{SCHEMA\_NAME}/validation
 

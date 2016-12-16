@@ -4,17 +4,12 @@ Resource selectors
 About
 -----
 
-Resource selectors is a new way to route Offnet-calls. Old way used
-regex rules and "flags" for select proper resources (gateways). With new
-"resource selectors" you have several small modules, which can be
-organaized in "chanin" (rules).
+Resource selectors is a new way to route Offnet-calls. Old way used regex rules and "flags" for select proper resources (gateways). With new "resource selectors" you have several small modules, which can be organaized in "chanin" (rules).
 
 Rules
 -----
 
-Rules is array of JSON objects. Each object contain one item where key
-is name of the module, and value is another object, with parameters for
-that module.
+Rules is array of JSON objects. Each object contain one item where key is name of the module, and value is another object, with parameters for that module.
 
 Example:
 
@@ -28,17 +23,11 @@ Example:
       }
     }
 
-here we call modue ``filter_list`` (which filter resources comparing 2
-lists). More info about modules and their parameters can be found
-`here <https://github.com/2600hz/kazoo/blob/master/applications/stepswitch/doc/resource_selectors.md>`__.
+here we call modue ``filter_list`` (which filter resources comparing 2 lists). More info about modules and their parameters can be found `here <https://github.com/2600hz/kazoo/blob/master/applications/stepswitch/doc/resource_selectors.md>`__.
 
-Rules can be managed via http://{{IP}}:8000/v2/resource\_selectors or
-http://{{IP}}:8000/v2/accounts/{{ACCOUNT\_ID}}/resource\_selectors/rules
+Rules can be managed via http://{{IP}}:8000/v2/resource\_selectors or http://{{IP}}:8000/v2/accounts/{{ACCOUNT\_ID}}/resource\_selectors/rules
 
-Rules storred in ``resource_selector_rules`` file in Account database.
-System-wide rules is stored in Master-Account database, so
-http://{{IP}}:8000/v2/resource\_selectors/rules is equal to
-http://{{IP}}:8000/v2/accounts/{{MASTER\_ACCOUNT\_ID}}/resource\_selectors/rules
+Rules storred in ``resource_selector_rules`` file in Account database. System-wide rules is stored in Master-Account database, so http://{{IP}}:8000/v2/resource\_selectors/rules is equal to http://{{IP}}:8000/v2/accounts/{{MASTER\_ACCOUNT\_ID}}/resource\_selectors/rules
 
 Show rules
 ~~~~~~~~~~
@@ -140,10 +129,7 @@ Update rules
 Database selectors
 ------------------
 
-Database selectors - selectors stored in special database. Name of this
-database ``account/XX/XX/XXXXXXXXXXXXXXXXXXXXXXXXXXXX-selectors``, where
-``XXX...XXX`` - Account ID. System-wide selectors database use Master
-Account ID.
+Database selectors - selectors stored in special database. Name of this database ``account/XX/XX/XXXXXXXXXXXXXXXXXXXXXXXXXXXX-selectors``, where ``XXX...XXX`` - Account ID. System-wide selectors database use Master Account ID.
 
 Each selector is sepparate doument:
 
@@ -159,8 +145,7 @@ Each selector is sepparate doument:
        "value": "0.37"
     }
 
--  name - all selectors with same name used for filtering/sorting
-   resources
+-  name - all selectors with same name used for filtering/sorting resources
 -  selector - this value used for filtering/sorting
 -  resource - Resource ID
 -  value - additional value, which can be used for sorting
@@ -196,11 +181,9 @@ List selectors names
       "auth_token": "{AUTH_TOKEN}"
     }
 
-Here we see 2 selectors, ``lcr`` with 12 documents and ``lcr2`` with
-``36039`` documents.
+Here we see 2 selectors, ``lcr`` with 12 documents and ``lcr2`` with ``36039`` documents.
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/resource\_selectors/name/{SELECTOR\_NAME}
+    GET /v2/accounts/{ACCOUNT\_ID}/resource\_selectors/name/{SELECTOR\_NAME}
 
 .. code:: shell
 
@@ -259,11 +242,9 @@ List resources
       "auth_token": "{AUTH_TOKEN}"
     }
 
-In this example we see resources ``RES-2`` with 3 docuemnts, ``RES-3``
-with 8 documents and ``RES-4`` with 1 document.
+In this example we see resources ``RES-2`` with 3 docuemnts, ``RES-3`` with 8 documents and ``RES-4`` with 1 document.
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/resource\_selectors/resource/{RESOURCE\_ID}
+    GET /v2/accounts/{ACCOUNT\_ID}/resource\_selectors/resource/{RESOURCE\_ID}
 
 .. code:: shell
 
@@ -291,8 +272,7 @@ with 8 documents and ``RES-4`` with 1 document.
 Show selectors
 ^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/resource\_selectors/resource/{RESOURCE\_ID}/name/{SELECTOR\_NAME}
+    GET /v2/accounts/{ACCOUNT\_ID}/resource\_selectors/resource/{RESOURCE\_ID}/name/{SELECTOR\_NAME}
 
 .. code:: shell
 
@@ -327,17 +307,13 @@ Show selectors
       "auth_token": "{AUTH_TOKEN}"
     }
 
-Here we ses selectors for resource ``RES-4`` with selector name ``lcr``.
-Resulted list can be simple list of strings or list of objects, its
-dependind if there additional ``value`` or not.
+Here we ses selectors for resource ``RES-4`` with selector name ``lcr``. Resulted list can be simple list of strings or list of objects, its dependind if there additional ``value`` or not.
 
 Manage selectors
 ~~~~~~~~~~~~~~~~
 
-Manage (import/delete) resource selectors made via kazoo tasks (CSV
-file).
+Manage (import/delete) resource selectors made via kazoo tasks (CSV file).
 
 Category ``resourse_selectors``, action ``import`` or ``delete``.
 
-CSV columns: \* mandatory \* name \* selector \* resource \* optional \*
-stat\_time \* stop\_time \* value
+CSV columns: \* mandatory \* name \* selector \* resource \* optional \* stat\_time \* stop\_time \* value

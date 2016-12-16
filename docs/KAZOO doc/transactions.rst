@@ -4,8 +4,7 @@ Transactions
 About
 ^^^^^
 
-The transactions endpoint allows you to list debits and credits made to
-a specified account.
+The transactions endpoint allows you to list debits and credits made to a specified account.
 
 Schema
 ^^^^^^
@@ -123,8 +122,7 @@ Credit an account
 
 Only for super duper admins and resellers.
 
-Super admin can add ``"credit_type": "free"`` field to avoid bookkeeper
-and add credit "for free".
+Super admin can add ``"credit_type": "free"`` field to avoid bookkeeper and add credit "for free".
 
 .. code:: shell
 

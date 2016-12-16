@@ -5,16 +5,11 @@ Manage and track number port requests through the Port Requests API.
 
 A port request can be in one of five **states**:
 
--  ``unconfirmed``: A port request has been created, but the details
-   have not been confirmed and the port process has not started.
--  ``submitted``: Indicates the number port is ready to be processed and
-   sent to the losing carrier.
--  ``scheduled``: The port is in progress and the losing carrier has
-   been notified.
--  ``completed``: The port request has been finished, and numbers are
-   activated.
--  ``rejected``: The port request has been cancelled, or something has
-   gone wrong during the port process. The port can be resubmitted.
+-  ``unconfirmed``: A port request has been created, but the details have not been confirmed and the port process has not started.
+-  ``submitted``: Indicates the number port is ready to be processed and sent to the losing carrier.
+-  ``scheduled``: The port is in progress and the losing carrier has been notified.
+-  ``completed``: The port request has been finished, and numbers are activated.
+-  ``rejected``: The port request has been cancelled, or something has gone wrong during the port process. The port can be resubmitted.
 
 List port requests
 ^^^^^^^^^^^^^^^^^^
@@ -103,8 +98,7 @@ Listing by port state
 
 You can issue GET requests to find all ports in a particular state too.
 
-All requests are not paginated, with the exception of the ``completed``
-state. Use pagination toggles for date range as desired.
+All requests are not paginated, with the exception of the ``completed`` state. Use pagination toggles for date range as desired.
 
 Listing by ``unconfirmed`` port
 '''''''''''''''''''''''''''''''
@@ -650,8 +644,7 @@ DELETE a port request
 List attachments on a port request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments
+    GET /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments
 
 .. code:: shell
 
@@ -681,11 +674,9 @@ List attachments on a port request
 Add an attachment to a port request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Note: if ``ATTACHMENT_ID`` does not end with ``.pdf`` the extension will
-be appended.
+Note: if ``ATTACHMENT_ID`` does not end with ``.pdf`` the extension will be appended.
 
-    PUT
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments
+    PUT /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments
 
 .. code:: shell
 
@@ -708,8 +699,7 @@ be appended.
 Get an attachment from a port request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments/{ATTACHMENT\_ID}
+    GET /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments/{ATTACHMENT\_ID}
 
 .. code:: shell
 
@@ -723,8 +713,7 @@ Streams back the contents of the PDF file ``{ATTACHMENT_ID}``.
 Replace an attachment on a port request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    POST
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments/{ATTACHMENT\_ID}
+    POST /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments/{ATTACHMENT\_ID}
 
 .. code:: shell
 
@@ -747,8 +736,7 @@ Replace an attachment on a port request
 Delete an attachment on a port request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    DELETE
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments/{ATTACHMENT\_ID}
+    DELETE /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/attachments/{ATTACHMENT\_ID}
 
 .. code:: shell
 
@@ -769,8 +757,7 @@ Delete an attachment on a port request
 Indicate a port is ready to be processed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    PATCH
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/submitted
+    PATCH /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/submitted
 
 .. code:: shell
 
@@ -831,8 +818,7 @@ Failure: charges have to be accepted
 Put port in pending
 ^^^^^^^^^^^^^^^^^^^
 
-    PATCH
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/pending
+    PATCH /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/pending
 
 .. code:: shell
 
@@ -893,8 +879,7 @@ Failure: target state illegal given current state
 Put port in progress (sent to losing carrier)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    PATCH
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/scheduled
+    PATCH /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/scheduled
 
 .. code:: shell
 
@@ -931,8 +916,7 @@ Put port in progress (sent to losing carrier)
 Complete port, numbers will activate in the system, account will be billed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    PATCH
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/completed
+    PATCH /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/completed
 
 .. code:: shell
 
@@ -969,8 +953,7 @@ Complete port, numbers will activate in the system, account will be billed
 Reject a port
 ^^^^^^^^^^^^^
 
-    PATCH
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/rejected
+    PATCH /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/rejected
 
 .. code:: shell
 
@@ -1007,8 +990,7 @@ Reject a port
 Cancel a port
 ^^^^^^^^^^^^^
 
-    PATCH
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/canceled
+    PATCH /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/canceled
 
 .. code:: shell
 
@@ -1045,8 +1027,7 @@ Cancel a port
 Build an LOA PDF from a port request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/loa
+    GET /v2/accounts/{ACCOUNT\_ID}/port\_requests/{PORT\_REQUEST\_ID}/loa
 
 .. code:: shell
 

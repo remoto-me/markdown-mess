@@ -329,9 +329,7 @@ Fetch interaction summary
 Fetch all legs related to an interaction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Crossbar cdrs was extended to provide simplified interaction call detail
-records. It groups all CDRs that interacted with eachouther to form a
-list of calls.
+Crossbar cdrs was extended to provide simplified interaction call detail records. It groups all CDRs that interacted with eachouther to form a list of calls.
 
     GET /v2/accounts/{ACCOUNT\_ID}/cdrs/legs/{INTERACTION\_ID}
 
@@ -344,38 +342,28 @@ list of calls.
 Variations
 ^^^^^^^^^^
 
-You can select CDRs/interactions for a specific user by adding them to
-the URI:
+You can select CDRs/interactions for a specific user by adding them to the URI:
 
     GET /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}/cdrs
 
 Notes on fields
 ^^^^^^^^^^^^^^^
 
-Some fields need a little more explanation to help you understand what
-they are telling you about the call leg.
+Some fields need a little more explanation to help you understand what they are telling you about the call leg.
 
--  ``call_direction`` - direction of the leg, relative to the media
-   switch
+-  ``call_direction`` - direction of the leg, relative to the media switch
 -  ``inbound`` - leg came into the media switch (typically the A-leg)
 -  ``outbound`` - leg started on the media switch (typically the B-leg)
--  ``hangup_cause`` - The reason why the call leg ended. See the
-   `FreeSWITCH Hangup
-   Causes <http://wiki.freeswitch.org/wiki/Hangup_causes>`__ page for
-   descriptions.
--  ``billing_seconds`` - How many seconds of the call are billable (post
-   answer, normally)
+-  ``hangup_cause`` - The reason why the call leg ended. See the `FreeSWITCH Hangup Causes <http://wiki.freeswitch.org/wiki/Hangup_causes>`__ page for descriptions.
+-  ``billing_seconds`` - How many seconds of the call are billable (post answer, normally)
 -  ``to`` - Depends on the direction of the leg
--  outbound - Uses the presence-id or else it uses the SIP Request
-   address
+-  outbound - Uses the presence-id or else it uses the SIP Request address
 -  inbound - the SIP To header
 
 Kazoo-specific properties
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-These are properties set by Kazoo for internal purposes. These are the
-properties found under the ``custom_channel_vars`` property at the
-top-level of the CDR JSON object. The non-exhaustive list of properties:
+These are properties set by Kazoo for internal purposes. These are the properties found under the ``custom_channel_vars`` property at the top-level of the CDR JSON object. The non-exhaustive list of properties:
 
 -  ``account_id`` - Account ID this leg belongs to
 -  ``authorizing_id`` - Document ID used to authorize this call leg
@@ -383,28 +371,21 @@ top-level of the CDR JSON object. The non-exhaustive list of properties:
 -  ``device`` - the call leg is to/from a known Kazoo device
 -  ``resource`` - the call leg is from a known offnet carrier
 -  ``outbound_fax``
--  ``bridge_id`` - Typically the A-leg's call-id; helps with tracking
-   transfers
+-  ``bridge_id`` - Typically the A-leg's call-id; helps with tracking transfers
 -  ``ecallmgr_node`` - Which ecallmgr node is processing the call leg
 -  ``fetch_id`` - The dialplan XML fetch ID from FreeSWITCH
 -  ``realm`` - the SIP realm of the account
--  ``resource_id`` - Resource ID used for the leg; typically a carrier,
-   local or global, that the call was routed to
+-  ``resource_id`` - Resource ID used for the leg; typically a carrier, local or global, that the call was routed to
 -  ``username`` - the SIP username of the endpoint that started the leg
 
 Billing-related Properties
 ''''''''''''''''''''''''''
 
-These properties relate to how the leg was rated and billed. Some of
-these properties are not accessible via Crossbar, but may exist on the
-CDR
+These properties relate to how the leg was rated and billed. Some of these properties are not accessible via Crossbar, but may exist on the CDR
 
--  ``reseller_billing`` - tag describing what billing was used for the
-   reseller
--  ``reseller_id`` - Account ID of the reseller for the account of this
-   leg
--  ``account_billing`` - tag describing what billing was used for the
-   account
+-  ``reseller_billing`` - tag describing what billing was used for the reseller
+-  ``reseller_id`` - Account ID of the reseller for the account of this leg
+-  ``account_billing`` - tag describing what billing was used for the account
 -  ``rate`` - Rate of the call
 -  ``base_cost`` - How much the call costs to start (if per-minute)
 -  ``rate_name`` - Name of the rate doc used
@@ -415,19 +396,14 @@ CDR
 Fax-specific Properties
 '''''''''''''''''''''''
 
-These properties may exist on a CDR for a fax request (inbound or
-outbound):
+These properties may exist on a CDR for a fax request (inbound or outbound):
 
 -  ``fax_transfer_rate`` - Baud of the fax transfer
 -  ``fax_bad_rows`` - Number of rows that failed to transfer
--  ``fax_total_pages`` - Number of pages in the fax (see
-   ``fax_transferred_pages`` for how many made it)
+-  ``fax_total_pages`` - Number of pages in the fax (see ``fax_transferred_pages`` for how many made it)
 -  ``fax_transferred_pages`` - Number of pages transferred
 -  ``fax_ecm_used`` - Was ECM (error correction mode) used on the fax
 -  ``fax_result_text`` - Error String, if any, or 'OK' if successful
--  ``fax_result_code`` - `Result
-   code <http://wiki.freeswitch.org/wiki/Variable_fax_result_code>`__ of
-   the transmission
--  ``fax_success`` - boolean for whether the fax was considered a
-   success
+-  ``fax_result_code`` - `Result code <http://wiki.freeswitch.org/wiki/Variable_fax_result_code>`__ of the transmission
+-  ``fax_success`` - boolean for whether the fax was considered a success
 -  ``fax_t38`` - boolean for whether the fax T.38 was used

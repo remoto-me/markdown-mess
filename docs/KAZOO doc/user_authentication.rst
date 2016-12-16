@@ -4,9 +4,7 @@ User Authentication
 About User Authentication
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using your username and password, along with an account identifier, will
-instruct Crossbar to create an authentication token to be used on
-subsequent requests requiring authentication.
+Using your username and password, along with an account identifier, will instruct Crossbar to create an authentication token to be used on subsequent requests requiring authentication.
 
 Schema
 ^^^^^^
@@ -63,11 +61,9 @@ Easy as 1, 2, 3:
 
 The response will contain, among other things:
 
--  ``{AUTH_TOKEN}``: this is your authentication token to include in
-   future requests
+-  ``{AUTH_TOKEN}``: this is your authentication token to include in future requests
 -  ``{ACCOUNT_ID}``: your account's ID, useful for constructing URIs
--  ``{OWNER_ID}``: The user's ID of the owner of the credentials used to
-   generate this token
+-  ``{OWNER_ID}``: The user's ID of the owner of the credentials used to generate this token
 -  ``{RESELLER_ID}``: The account's reseller account ID, if any
 -  ``{REQUEST_ID}``: Useful for debugging requests on your installation
 
@@ -173,11 +169,7 @@ Schema
 |      |              | )``   |          |           |
 +------+--------------+-------+----------+-----------+
 
-Sometimes it is necessary to recover a password. Similar to user
-authentication, you can supply the account realm, the account name, or a
-phone number associated with the account to send a password reset to the
-user's email. This email will contain a link that one then click to
-verify identity & proceed with recovery.
+Sometimes it is necessary to recover a password. Similar to user authentication, you can supply the account realm, the account name, or a phone number associated with the account to send a password reset to the user's email. This email will contain a link that one then click to verify identity & proceed with recovery.
 
     PUT /v2/user\_auth/recovery
 

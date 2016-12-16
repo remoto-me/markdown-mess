@@ -218,8 +218,7 @@ Successful creation
 Error: old soft-deleted document still exists
 '''''''''''''''''''''''''''''''''''''''''''''
 
-Note: to avoid conflicts use hard deletes. However, soft deletes leave
-you the possibility to rollback to a previous version.
+Note: to avoid conflicts use hard deletes. However, soft deletes leave you the possibility to rollback to a previous version.
 
 .. code:: json
 

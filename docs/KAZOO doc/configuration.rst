@@ -4,8 +4,7 @@ Crossbar Configuration
 System Configs
 ^^^^^^^^^^^^^^
 
-The following table outlines the configs that can be found in the
-``system_config`` database, ``crossbar`` document:
+The following table outlines the configs that can be found in the ``system_config`` database, ``crossbar`` document:
 
 +--------+---------+------------+----------------+
 | Key    | Type    | Default    | Description    |
@@ -182,8 +181,7 @@ The following table outlines the configs that can be found in the
 Additional Configs
 ^^^^^^^^^^^^^^^^^^
 
-Some modules use the ``crossbar`` namespace to create a specific
-``system_config`` document for settings as well.
+Some modules use the ``crossbar`` namespace to create a specific ``system_config`` document for settings as well.
 
 ``crossbar.accounts``
 '''''''''''''''''''''

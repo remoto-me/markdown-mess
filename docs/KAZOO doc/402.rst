@@ -1,8 +1,7 @@
 402 Payment Required
 ~~~~~~~~~~~~~~~~~~~~
 
-When a request is made via crossbar and this request is updating a
-quantity from the services (Ex: Adding a device, a user ...).
+When a request is made via crossbar and this request is updating a quantity from the services (Ex: Adding a device, a user ...).
 
 Format
 ^^^^^^

@@ -4,9 +4,7 @@ Users
 About Users
 ^^^^^^^^^^^
 
-Users represent just that, your users of the system. You can assign
-multiple devices to a user, put the user in a callflow, and all devices
-will ring.
+Users represent just that, your users of the system. You can assign multiple devices to a user, put the user in a callflow, and all devices will ring.
 
 Schema
 ^^^^^^
@@ -597,8 +595,7 @@ Create a new user
 Remove a user
 ^^^^^^^^^^^^^
 
-This request will return the current JSON object of the now-deleted
-user.
+This request will return the current JSON object of the now-deleted user.
 
     DELETE /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}
 
@@ -763,10 +760,7 @@ Change the user doc
 
 This requires posting the full user's document in the request body
 
-**Sync**: See `the documentation on device sync <#sync>`__ for more info
-on ``check-sync``. One can add the field ``"sync": true`` to the JSON
-document in order to attempt a ``check-sync`` on every registered device
-this user has.
+**Sync**: See `the documentation on device sync <#sync>`__ for more info on ``check-sync``. One can add the field ``"sync": true`` to the JSON document in order to attempt a ``check-sync`` on every registered device this user has.
 
     POST /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}
 
@@ -823,9 +817,7 @@ this user has.
 Fetch (or create) a vCard
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-`vCard <https://en.wikipedia.org/wiki/VCard>`__ is a file format
-typically used in emails as a form of business card. Kazoo currently
-generates a 3.0 compatible vCard.
+`vCard <https://en.wikipedia.org/wiki/VCard>`__ is a file format typically used in emails as a form of business card. Kazoo currently generates a 3.0 compatible vCard.
 
     GET /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}/vcard
 
@@ -855,11 +847,9 @@ Remove the photo from the user
 Fetch the user's photo, if any
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Set the ``Accept`` header to either ``application/base64`` or
-``application/octet-stream`` to retrieve the picture's contents.
+Set the ``Accept`` header to either ``application/base64`` or ``application/octet-stream`` to retrieve the picture's contents.
 
-If the result is successful, you will want to pipe the response into a
-file.
+If the result is successful, you will want to pipe the response into a file.
 
     GET /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}/photo
 
@@ -896,9 +886,7 @@ Execute a quick call
 
 Ring user's devices; once answered, connect to ``{PHONE_NUMBER}``
 
-In this scenario, the user's devices are considered the ``callee`` while
-the ``{PHONE_NUMBER}`` side is considered the caller (helpful to know
-when debugging a call!).
+In this scenario, the user's devices are considered the ``callee`` while the ``{PHONE_NUMBER}`` side is considered the caller (helpful to know when debugging a call!).
 
 Query string options:
 
@@ -973,8 +961,7 @@ Query string options:
 |      |       | 30)          |
 +------+-------+--------------+
 
-    GET
-    /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}/quickcall/{PHONE\_NUMBER}
+    GET /v2/accounts/{ACCOUNT\_ID}/users/{USER\_ID}/quickcall/{PHONE\_NUMBER}
 
 .. code:: shell
 

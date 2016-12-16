@@ -4,33 +4,21 @@ Token restrictions
 About token restrictions
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Token restrictions - set of rules saved in auth token document. These
-rules grant access to API URIs.
+Token restrictions - set of rules saved in auth token document. These rules grant access to API URIs.
 
-**If the token document doesn't have any rules then this module won't
-apply any restrictions to request.**
+**If the token document doesn't have any rules then this module won't apply any restrictions to request.**
 
-These rules are created when the system creates an auth token. Rules can
-be loaded from system template or account template. System template
-located in ``system_config/crossbar.token_restrictions``. Account
-template located in ``{ACCOUNT_DB}/token_restrictions``.
+These rules are created when the system creates an auth token. Rules can be loaded from system template or account template. System template located in ``system_config/crossbar.token_restrictions``. Account template located in ``{ACCOUNT_DB}/token_restrictions``.
 
 How it works?
 ^^^^^^^^^^^^^
 
-When you make request to Crossbar (API), the system loads rules from
-auth token (used for authentitcation) and tries to apply the rules to
-URI (``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/``). More
-information about URI structure can be found `here <basics.md>`__. If
-Crossbar doesn't find a match for all parameters (endpoint name, account
-id, endpoint arguments, HTTP method), then it halts the request and
-returns a 403 error.
+When you make request to Crossbar (API), the system loads rules from auth token (used for authentitcation) and tries to apply the rules to URI (``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/``). More information about URI structure can be found `here <basics.md>`__. If Crossbar doesn't find a match for all parameters (endpoint name, account id, endpoint arguments, HTTP method), then it halts the request and returns a 403 error.
 
 Template structure
 ^^^^^^^^^^^^^^^^^^
 
-Each template can have different rules for different authentication
-methods and user privelege levels.
+Each template can have different rules for different authentication methods and user privelege levels.
 
 .. code:: json
 
@@ -52,21 +40,11 @@ methods and user privelege levels.
       ...
     }
 
--  ``AUTH_METHOD_#`` - name of authentication method (``cb_api_auth``,
-   ``cb_user_auth``, etc) which created this auth token.
--  ``PRIV_LEVEL_#`` - name of privilege level of authenticated user
-   (``admin``, ``user``, etc). This level is set in ``priv_level``
-   property of user document. If authentication method doesn't have a
-   user associated (such as ``cb_api_auth``) then select ``admin`` set
-   of rules.
+-  ``AUTH_METHOD_#`` - name of authentication method (``cb_api_auth``, ``cb_user_auth``, etc) which created this auth token.
+-  ``PRIV_LEVEL_#`` - name of privilege level of authenticated user (``admin``, ``user``, etc). This level is set in ``priv_level`` property of user document. If authentication method doesn't have a user associated (such as ``cb_api_auth``) then select ``admin`` set of rules.
 -  ``RULES`` - set of rules which will be saved in auth token document.
 
-Auth method and priv level can be matched with "catch all" term -
-``"_"``. If no exact match for auth method or priv level is found, the
-system will look for the 'catch all' rules, if any. The rules are loaded
-into the auth token document when it is created (after successful
-authentication) and will be applied to any request using the auth token
-created.
+Auth method and priv level can be matched with "catch all" term - ``"_"``. If no exact match for auth method or priv level is found, the system will look for the 'catch all' rules, if any. The rules are loaded into the auth token document when it is created (after successful authentication) and will be applied to any request using the auth token created.
 
 Example template:
 
@@ -138,8 +116,7 @@ Rules structure (saved in token document)
       ...
     }
 
--  ``ENDPOINT_#`` - API endpoints (``"devices"``, ``"users"``,
-   ``"callflows"``, etc)
+-  ``ENDPOINT_#`` - API endpoints (``"devices"``, ``"users"``, ``"callflows"``, etc)
 -  ``ACCOUNT_ID_#`` - any appropriate account ID
 -  ``ARG_#`` - arguments for endpoint separated by ``/``
 -  ``VERB_#`` - any appropriate HTTP method (``"GET"``, ``"PUT"``, etc)
@@ -150,13 +127,7 @@ Match order
 Endpoint match
 ''''''''''''''
 
-At this step module compare resource from URI with resource names in
-token restrictions. If URI is
-``/v2/accounts/{ACCOUNT_ID}/users/{USER_ID}/{MODIFIER}/`` then endpoint
-will be ``users``, and ``{USER_ID}``, ``{MODIFIER}`` are arguments of
-this endpoint. Rules applied to the last endpoint in URI. You can use
-"catch all" (``"_"``) endpoint name. First tries exact endpoint name: if
-not found, try the catch-all (if it exists).
+At this step module compare resource from URI with resource names in token restrictions. If URI is ``/v2/accounts/{ACCOUNT_ID}/users/{USER_ID}/{MODIFIER}/`` then endpoint will be ``users``, and ``{USER_ID}``, ``{MODIFIER}`` are arguments of this endpoint. Rules applied to the last endpoint in URI. You can use "catch all" (``"_"``) endpoint name. First tries exact endpoint name: if not found, try the catch-all (if it exists).
 
 .. code:: json
 
@@ -174,15 +145,12 @@ not found, try the catch-all (if it exists).
       ]
     }
 
-If a match is not found for the endpoint, this request is halted and a
-403 error returned. Each endpoint contains a list of objects with rules.
-Appropriate object is selected by ``"allowed_account"`` parameter.
+If a match is not found for the endpoint, this request is halted and a 403 error returned. Each endpoint contains a list of objects with rules. Appropriate object is selected by ``"allowed_account"`` parameter.
 
 Account match
 '''''''''''''
 
-After Crossbar finds the endpoint it tries to find rules for the
-requested account.
+After Crossbar finds the endpoint it tries to find rules for the requested account.
 
 .. code:: json
 
@@ -209,18 +177,13 @@ requested account.
       ]
     }
 
-List of account IDs set in parameter ``"allowed_accounts"``. You can
-write exact IDs or one of the following special macros:
+List of account IDs set in parameter ``"allowed_accounts"``. You can write exact IDs or one of the following special macros:
 
--  ``"{AUTH_ACCOUNT_ID}"`` - match request account id to the account of
-   the auth token
--  ``"{DESCENDANT_ACCOUNT_ID}"`` - match any descendants of the auth
-   account
--  ``"_"`` - match any account. **If the ``"allowed_accounts"``
-   parameter is missing, it is treated as ``"_"`` (match any account).**
+-  ``"{AUTH_ACCOUNT_ID}"`` - match request account id to the account of the auth token
+-  ``"{DESCENDANT_ACCOUNT_ID}"`` - match any descendants of the auth account
+-  ``"_"`` - match any account. **If the ``"allowed_accounts"`` parameter is missing, it is treated as ``"_"`` (match any account).**
 
-The first endpoint-rule object matched to the requested account will be
-used in the next step of argument matching.
+The first endpoint-rule object matched to the requested account will be used in the next step of argument matching.
 
 Endpoint arguments match
 ''''''''''''''''''''''''
@@ -245,8 +208,7 @@ Endpoint argumnets matched with parameter ``"rules"``.
       ]
     }
 
-The search is performed in the order in which they appear in the rules
-for first match. No more search after that.
+The search is performed in the order in which they appear in the rules for first match. No more search after that.
 
 Rule keys
 '''''''''
@@ -269,36 +231,26 @@ Rule keys
 
 **Matches** \* ``/v2/accounts/{ACCOUNT_ID}/devices``
 
-**Doesn't Match** \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID}``
+**Doesn't Match** \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID}``
 
 ``#`` - match any arguments (or no arguments)
 
-**Matches** \* ``/v2/accounts/{ACCOUNT_ID}/devices`` \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}`` \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \* etc
+**Matches** \* ``/v2/accounts/{ACCOUNT_ID}/devices`` \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}`` \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \* etc
 
 ``{DEVICE_ID}/quickcall/{DID}`` - match exact list of arguments
 
-**Matches** \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID}``
+**Matches** \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID}``
 
-**Doesn't Match** \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}``
-\* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID_2}``
+**Doesn't Match** \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}`` \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID_2}``
 
 ``{DEVICE_ID}/#`` - matches ``{DEVICE_ID}`` plus all arguments
 
-**Matches** \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}`` \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \*
-``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID}`` \* etc
+**Matches** \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}`` \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/sync`` \* ``/v2/accounts/{ACCOUNT_ID}/devices/{DEVICE_ID}/quickcall/{DID}`` \* etc
 
 HTTP method match
 '''''''''''''''''
 
-If endpoint matching fails to find a match, Crossbar will try to match
-the HTTP method used.
+If endpoint matching fails to find a match, Crossbar will try to match the HTTP method used.
 
 .. code:: json
 
@@ -324,8 +276,7 @@ the HTTP method used.
       ]
     }
 
-List can contain any valid HTTP method ("GET", "PUT", "POST", "PATCH",
-"DELETE") or the "catch all" - ``"_"``.
+List can contain any valid HTTP method ("GET", "PUT", "POST", "PATCH", "DELETE") or the "catch all" - ``"_"``.
 
 Schema
 ^^^^^^
@@ -480,11 +431,7 @@ Change account's token restrictions
         -d @data.txt
         http://{SERVER}:8000/v2/accounts/{ACCOUNT_ID}/token_restrictions
 
-File ``data.txt`` contains this restrictions: \* ``admin`` has full
-access \* ``operator`` can view/create/update devices (but not delete),
-full access to callflows, all other API restricted \* ``accountant`` can
-only view transactions, all other API restricted \* ``user`` can only
-view devices and other users. all other API restricted
+File ``data.txt`` contains this restrictions: \* ``admin`` has full access \* ``operator`` can view/create/update devices (but not delete), full access to callflows, all other API restricted \* ``accountant`` can only view transactions, all other API restricted \* ``user`` can only view devices and other users. all other API restricted
 
 .. code:: json
 
