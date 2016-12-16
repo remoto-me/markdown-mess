@@ -12,5 +12,5 @@ Contents:
    :maxdepth: 2
    :glob:
 
-   KAZOO doc/*.rst
+   KAZOO doc/*
 
